@@ -16,6 +16,8 @@
             --light-brown: #D7CCC8;
             --soft-white: #ffffff;
             --text-color: #4E342E;
+            --success-green: #2e7d32;
+            --pending-yellow: #f57f17;
         }
 
         body {
@@ -26,221 +28,79 @@
         }
 
         /* Navbar */
-        .navbar {
-            background-color: rgba(253, 251, 247, 0.95);
-            box-shadow: 0 2px 15px rgba(141, 110, 99, 0.1);
-            backdrop-filter: blur(8px);
-        }
-        .navbar-brand {
-            font-weight: 600;
-            color: var(--dark-brown) !important;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Slider */
-        .carousel-item {
-            height: 50vh; 
-            min-height: 250px;
-            background-color: #f4f4f4;
-        }
-        @media (min-width: 768px) {
-            .carousel-item { height: 75vh; }
-        }
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* Status Button */
-        .status-check-section {
-            text-align: center;
-            margin-top: 25px;
-            margin-bottom: 25px;
-        }
-        .btn-status-check {
-            background-color: white;
-            color: var(--primary-brown);
-            border: 2px solid var(--primary-brown);
-            padding: 12px 35px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .btn-status-check:hover {
-            background-color: var(--primary-brown);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(141, 110, 99, 0.2);
-        }
-
-        /* Product Cards */
-        .product-card {
-            background: var(--soft-white);
-            border: none;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(141, 110, 99, 0.08);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(141, 110, 99, 0.15);
-        }
-        .product-img-box {
-            height: 280px;
-            width: 100%;
-            overflow: hidden;
-            background-color: #fafafa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .card-body {
-            padding: 25px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+        .navbar { background-color: rgba(253, 251, 247, 0.98); box-shadow: 0 4px 20px rgba(141, 110, 99, 0.1); backdrop-filter: blur(10px); }
+        .navbar-brand { font-weight: 600; color: var(--dark-brown) !important; font-size: 1.3rem; }
         
         .btn-custom {
             background-color: var(--primary-brown);
-            color: white;
-            border-radius: 50px;
-            padding: 12px 0;
-            border: none;
-            width: 100%;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(141, 110, 99, 0.2);
+            color: white; border-radius: 50px; padding: 10px 0; border: none; width: 100%;
+            transition: 0.3s; box-shadow: 0 4px 10px rgba(141, 110, 99, 0.2);
         }
-        .btn-custom:hover {
-            background-color: var(--dark-brown);
-            color: white;
-            transform: scale(1.02);
-        }
+        .btn-custom:hover { background-color: var(--dark-brown); color: white; transform: scale(1.02); }
 
-        /* Tables */
-        .table-custom {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
+        /* Slider */
+        .carousel-item { height: 50vh; min-height: 250px; background-color: #f4f4f4; }
+        @media (min-width: 768px) { .carousel-item { height: 75vh; } }
+        .carousel-item img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+        /* Product Cards */
+        .product-card {
+            background: var(--soft-white); border: none; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(141, 110, 99, 0.08); transition: all 0.3s ease; height: 100%;
+            display: flex; flex-direction: column;
         }
-        .table-custom thead {
-            background-color: var(--primary-brown);
-            color: white;
-        }
-        .table-custom th, .table-custom td {
-            padding: 12px 8px;
-            vertical-align: middle;
-        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(141, 110, 99, 0.15); }
+        .product-img-box { height: 280px; width: 100%; overflow: hidden; background-color: #fafafa; display: flex; align-items: center; justify-content: center; }
+        .product-img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .card-body { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
 
         /* Footer */
-        .footer-contact {
-            background-color: white;
-            padding: 50px 20px;
-            border-top: 1px solid #eee;
-            margin-top: 60px;
-            text-align: center;
-        }
-        .action-buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn-link-custom {
-            font-size: 0.9rem;
-            color: #888;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: all 0.2s;
-            background: white;
-        }
-        .btn-link-custom:hover {
-            background-color: var(--primary-brown);
-            color: white;
-            border-color: var(--primary-brown);
-        }
+        .footer-contact { background-color: white; padding: 50px 20px; border-top: 1px solid #eee; margin-top: 60px; text-align: center; }
+        .btn-link-custom { color: #888; text-decoration: none; border: 1px solid #ddd; padding: 8px 25px; border-radius: 30px; transition: all 0.2s; background: white; margin: 5px; display: inline-block; }
+        .btn-link-custom:hover { background-color: var(--primary-brown); color: white; border-color: var(--primary-brown); }
 
-        /* Modal Elements */
-        .modal-content { border-radius: 16px; border: none; }
-        .modal-header { background-color: var(--bg-cream); color: var(--dark-brown); border-bottom: 1px solid var(--light-brown); border-radius: 16px 16px 0 0; }
-        
-        .bank-box {
-            background-color: #EFEBE9;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-            text-align: center;
-            border: 2px dashed var(--primary-brown);
-        }
-        .form-control, .form-select {
-            border-radius: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-brown);
-            box-shadow: 0 0 0 0.25rem rgba(141, 110, 99, 0.2);
-        }
-        .success-box {
-            background-color: #FFF8E1;
-            border: 1px solid #FFECB3;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Admin Dashboard Cards */
+        /* Dashboard Stats */
         .dashboard-card {
-            border-radius: 12px;
-            padding: 20px;
-            color: white;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 16px; padding: 25px; color: white; margin-bottom: 20px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); position: relative; overflow: hidden;
         }
-        .card-orders { background: linear-gradient(45deg, #8D6E63, #5D4037); }
-        .card-revenue { background: linear-gradient(45deg, #198754, #146c43); }
+        .card-orders { background: linear-gradient(135deg, #8D6E63, #5D4037); }
+        .card-revenue { background: linear-gradient(135deg, #66BB6A, #2E7D32); }
+        .dashboard-card i { position: absolute; right: 15px; bottom: 15px; font-size: 3rem; opacity: 0.2; }
+
+        /* Responsive Table */
+        .table-responsive { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .table-hover tbody tr:hover { background-color: #f9f5f0; }
         
-        /* View Detail Modal */
-        .detail-row {
-            border-bottom: 1px solid #eee;
-            padding: 10px 0;
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; display: inline-block; }
+        .status-wait { background-color: #FFF3E0; color: #EF6C00; border: 1px solid #FFE0B2; }
+        .status-done { background-color: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
+
+        @media (max-width: 768px) {
+            .table-responsive table, .table-responsive thead, .table-responsive tbody, .table-responsive th, .table-responsive td, .table-responsive tr { display: block; }
+            .table-responsive thead tr { position: absolute; top: -9999px; left: -9999px; }
+            .table-responsive tr { background: white; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; padding: 15px; }
+            .table-responsive td { border: none; position: relative; padding: 5px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #eee; }
+            .table-responsive td:last-child { border-bottom: none; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+            .table-responsive td:before { content: attr(data-label); font-weight: 600; color: var(--dark-brown); font-size: 0.9rem; }
+            .mobile-hide { display: none !important; }
         }
-        .detail-label {
-            font-weight: bold;
-            color: var(--primary-brown);
-        }
+
+        .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .detail-label { font-weight: 600; color: var(--dark-brown); }
+        .detail-value { text-align: right; color: #555; }
+        
+        .form-control, .form-select { border-radius: 10px; padding: 10px; border: 1px solid #ddd; }
+        .form-control:focus, .form-select:focus { border-color: var(--primary-brown); box-shadow: 0 0 0 0.25rem rgba(141, 110, 99, 0.2); }
     </style>
 </head>
 <body>
 
     <nav class="navbar fixed-top">
         <div class="container">
-            <span class="navbar-brand mx-auto"><i class="fa-solid fa-futbol"></i> PSL 20th Anniversary</span>
+            <span class="navbar-brand mx-auto">
+                <i class="fa-solid fa-futbol me-2"></i> PSL 20th Anniversary
+            </span>
         </div>
     </nav>
 
@@ -265,17 +125,11 @@
             <div class="carousel-item"><img src="https://i.postimg.cc/xCnrwy97/6.jpg" alt="Slide 7"></div>
             <div class="carousel-item"><img src="https://i.postimg.cc/SxYpCxTy/7.jpg" alt="Slide 8"></div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
     </div>
 
-    <div class="status-check-section">
-        <button class="btn btn-status-check" onclick="openPublicView()">
-            <i class="fas fa-list-alt me-2"></i> ตรวจสอบสถานะคำสั่งซื้อของคุณ
+    <div class="text-center my-4">
+        <button class="btn btn-outline-secondary rounded-pill px-4 py-2" onclick="openPublicView()">
+            <i class="fas fa-search me-2"></i> ตรวจสอบสถานะคำสั่งซื้อ
         </button>
     </div>
 
@@ -319,45 +173,41 @@
 
     <div class="container pb-5">
         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
-            <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตารางไซส์ (Size Chart)</h3>
-            <p class="text-center text-muted mb-4">เลือกไซส์ที่เหมาะสมกับคุณ</p>
+            <h3 class="text-center fw-bold mb-4" style="color: var(--dark-brown);">ตาราง Size (Size Chart)</h3>
+            <p class="text-center text-muted mb-4">เลือก Size ที่เหมาะสมกับคุณ</p>
             <div class="row g-5">
                 <div class="col-lg-6">
                     <h5 class="text-center fw-bold text-brown mb-3">ผู้ใหญ่ (Adult)</h5>
-                    <div class="table-responsive">
-                        <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
-                            <tbody>
-                                <tr><td>SS</td><td>36"</td><td>26"</td></tr>
-                                <tr><td>S</td><td>38"</td><td>27"</td></tr>
-                                <tr><td>M</td><td>40"</td><td>28"</td></tr>
-                                <tr><td>L</td><td>42"</td><td>29"</td></tr>
-                                <tr><td>XL</td><td>44"</td><td>30"</td></tr>
-                                <tr><td>2XL</td><td>46"</td><td>31"</td></tr>
-                                <tr><td>3XL</td><td>48"</td><td>32"</td></tr>
-                                <tr><td>4XL</td><td>50"</td><td>33"</td></tr>
-                                <tr><td>5XL</td><td>52"</td><td>34"</td></tr>
-                                <tr><td>6XL</td><td>54"</td><td>35"</td></tr>
-                                <tr><td>7XL</td><td>56"</td><td>35"</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered text-center table-sm">
+                        <thead class="table-secondary"><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
+                        <tbody>
+                            <tr><td>SS</td><td>36"</td><td>26"</td></tr>
+                            <tr><td>S</td><td>38"</td><td>27"</td></tr>
+                            <tr><td>M</td><td>40"</td><td>28"</td></tr>
+                            <tr><td>L</td><td>42"</td><td>29"</td></tr>
+                            <tr><td>XL</td><td>44"</td><td>30"</td></tr>
+                            <tr><td>2XL</td><td>46"</td><td>31"</td></tr>
+                            <tr><td>3XL</td><td>48"</td><td>32"</td></tr>
+                            <tr><td>4XL</td><td>50"</td><td>33"</td></tr>
+                            <tr><td>5XL</td><td>52"</td><td>34"</td></tr>
+                            <tr><td>6XL</td><td>54"</td><td>35"</td></tr>
+                            <tr><td>7XL</td><td>56"</td><td>35"</td></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-lg-6">
                     <h5 class="text-center fw-bold text-brown mb-3">เด็ก (Junior)</h5>
-                    <div class="table-responsive">
-                        <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
-                            <tbody>
-                                <tr><td>2S</td><td>24"</td><td>18"</td></tr>
-                                <tr><td>S</td><td>26"</td><td>19"</td></tr>
-                                <tr><td>M</td><td>28"</td><td>20"</td></tr>
-                                <tr><td>L</td><td>30"</td><td>21"</td></tr>
-                                <tr><td>XL</td><td>32"</td><td>22"</td></tr>
-                                <tr><td>2XL</td><td>34"</td><td>23"</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-bordered text-center table-sm">
+                        <thead class="table-secondary"><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
+                        <tbody>
+                            <tr><td>2S</td><td>24"</td><td>18"</td></tr>
+                            <tr><td>S</td><td>26"</td><td>19"</td></tr>
+                            <tr><td>M</td><td>28"</td><td>20"</td></tr>
+                            <tr><td>L</td><td>30"</td><td>21"</td></tr>
+                            <tr><td>XL</td><td>32"</td><td>22"</td></tr>
+                            <tr><td>2XL</td><td>34"</td><td>23"</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -369,9 +219,8 @@
             <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> ฟิล์ม: <a href="tel:0953205156" class="fw-bold text-dark text-decoration-none">095-320-5156</a></span>
             <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> กัปตัน: <a href="tel:0969808374" class="fw-bold text-dark text-decoration-none">096-980-8374</a></span>
         </div>
-        
         <div class="action-buttons">
-            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-lock"></i> ผู้ดูแลระบบ (Admin)</span>
+            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ (Admin)</span>
         </div>
     </div>
 
@@ -390,11 +239,11 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small text-muted">ชื่อ-นามสกุล</label>
-                                <input type="text" id="c_name" class="form-control" placeholder="ระบุชื่อจริง" required>
+                                <input type="text" id="c_name" class="form-control" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="small text-muted">เบอร์โทรศัพท์ (10 หลัก)</label>
-                                <input type="tel" id="c_phone" class="form-control" placeholder="0XXXXXXXXX" maxlength="10" required>
+                                <input type="tel" id="c_phone" class="form-control" maxlength="10" required>
                             </div>
                         </div>
 
@@ -416,27 +265,32 @@
                             </div>
                         </div>
 
-                        <div class="bank-box mb-4">
-                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold display-6">0</span> บาท</h4>
-                            <div class="p-3 mb-2 bg-white rounded border d-inline-block shadow-sm">
-                                <p class="mb-1 fw-bold text-primary">ธนาคารกรุงไทย</p>
-                                <p class="mb-1">ชื่อบัญชี: นายณรรถภพ สราญรมย์</p>
-                                <p class="mb-0 fs-5 fw-bold">679-3-95520-9</p>
+                        <div class="p-3 mb-3 bg-light rounded text-center border">
+                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
+                            <div class="bg-white p-2 rounded d-inline-block border mb-2">
+                                <small>ธนาคารกรุงไทย</small><br>
+                                <strong>นายณรรถภพ สราญรมย์</strong><br>
+                                <span class="fs-5 fw-bold text-primary">679-3-95520-9</span>
                             </div>
-                            <div class="mt-2">
-                                <img src="https://i.postimg.cc/Wp9tqcfg/IMG_3380.jpg" alt="QR Code" style="width: 180px; border-radius: 8px; border: 1px solid #ddd;">
-                            </div>
+                            <br>
+                            <img src="https://i.postimg.cc/Wp9tqcfg/IMG_3380.jpg" alt="QR Code" style="width: 150px; border-radius: 8px; border: 1px solid #ddd;">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label fw-bold text-danger small">* กรุณาแนบสลิปการโอนเงินเพื่อยืนยัน</label>
+                            <label class="text-danger fw-bold small">* แนบสลิปการโอนเงินเพื่อยืนยัน</label>
                             <input type="file" id="slipFile" class="form-control" accept="image/*" required>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-custom" onclick="validateAndSubmit()">ยืนยันการสั่งซื้อ</button>
+                <div class="modal-footer border-0 p-3">
+                    <div class="row w-100 m-0 g-2">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-secondary w-100 rounded-pill py-2" data-bs-dismiss="modal">ยกเลิก</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-custom w-100 py-2" onclick="validateAndSubmit()">ยืนยัน</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -449,15 +303,11 @@
                     <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
                     <h2 class="fw-bold mb-2">ซื้อสำเร็จ!</h2>
                     <h5 class="mb-4 text-muted">ขอบคุณสำหรับคำสั่งซื้อของคุณ</h5>
-                    
-                    <p class="small text-secondary mb-4">ขอบคุณทุกการสนับสนุนซื้อเสื้อและแก้วที่ระลึกครบรอบ 20 ปี รายได้จะถูกนำไปบริหารจัดการเพื่อจัดซื้ออุปกรณ์ฟุตบอลที่จำเป็น รวมถึงติดตั้งระบบไฟส่องสว่างให้กับสนามฟุตบอล PSL</p>
-                    
-                    <div class="success-box">
-                        <h5 class="fw-bold text-brown mb-2"><i class="fas fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
+                    <div class="bg-warning bg-opacity-25 p-3 rounded">
+                        <h5 class="fw-bold text-brown mb-2"><i class="fa-solid fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
                         <p class="mb-1">วันที่ 30 ธ.ค. 68 เวลา 16:00 น. เป็นต้นไป</p>
                         <p class="mb-0 fw-bold">เชิญชวนพี่น้องๆ มาร่วมเตะฟุตบอลกันนะครับ!</p>
                     </div>
-
                     <button class="btn btn-secondary w-100 mt-4" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
                 </div>
             </div>
@@ -471,7 +321,7 @@
                     <h5 class="modal-title" id="dataModalTitle">รายการสั่งซื้อ</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body bg-light">
                     <div id="adminLoginSection" class="text-center py-5" style="display:none;">
                         <h4 class="mb-3">Admin Login</h4>
                         <input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน">
@@ -483,32 +333,43 @@
                         <div id="adminDashboard" class="row mb-4" style="display:none;">
                             <div class="col-md-6">
                                 <div class="dashboard-card card-orders">
-                                    <h5 class="mb-2"><i class="fas fa-shopping-bag"></i> จำนวนคำสั่งซื้อทั้งหมด</h5>
-                                    <h2 class="mb-0" id="adminTotalOrders">0</h2>
+                                    <h5 class="mb-1 text-white-50">คำสั่งซื้อทั้งหมด</h5>
+                                    <h2 class="mb-0 fw-bold" id="adminTotalOrders">0</h2>
+                                    <i class="fas fa-shopping-bag"></i>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="dashboard-card card-revenue">
-                                    <h5 class="mb-2"><i class="fas fa-coins"></i> รายได้ทั้งหมด</h5>
-                                    <h2 class="mb-0" id="adminTotalRevenue">0 ฿</h2>
+                                    <h5 class="mb-1 text-white-50">รายได้รวม</h5>
+                                    <h2 class="mb-0 fw-bold" id="adminTotalRevenue">0 ฿</h2>
+                                    <i class="fas fa-coins"></i>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-end mb-2">
-                            <button class="btn btn-success btn-sm" onclick="loadOrders()"><i class="fas fa-sync"></i> รีเฟรชข้อมูล</button>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted small">* แสดงข้อมูลล่าสุดขึ้นก่อน</span>
+                            <button class="btn btn-success btn-sm rounded-pill px-3" onclick="loadOrders()">
+                                <i class="fas fa-sync me-1"></i> รีเฟรช
+                            </button>
                         </div>
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover small align-middle text-center">
-                                <thead class="table-secondary">
+                            <table class="table table-hover align-middle mb-0 bg-white">
+                                <thead class="table-secondary text-center">
                                     <tr>
-                                        <th>เวลา</th><th>สินค้า</th><th>ไซส์</th><th>จำนวน</th>
-                                        <th>ชื่อ</th><th>เบอร์</th><th>ส่ง</th><th>รวม</th>
+                                        <th>วันที่</th>
+                                        <th>ชื่อลูกค้า</th>
+                                        <th>สินค้า</th>
+                                        <th class="mobile-hide">Size</th>
+                                        <th class="mobile-hide">จำนวน</th>
+                                        <th>ยอดรวม</th>
                                         <th>สถานะ</th>
-                                        <th id="actionHeader">รายละเอียด</th>
+                                        <th id="actionHeader">จัดการ</th>
                                     </tr>
                                 </thead>
-                                <tbody id="dataTableBody"></tbody>
+                                <tbody id="dataTableBody">
+                                    </tbody>
                             </table>
                         </div>
                     </div>
@@ -518,14 +379,17 @@
     </div>
 
     <div class="modal fade" id="viewDetailModal" tabindex="-1">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title">รายละเอียดคำสั่งซื้อ</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">🧾 รายละเอียดคำสั่งซื้อ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4" id="viewDetailBody">
                     </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">ปิด</button>
+                </div>
             </div>
         </div>
     </div>
@@ -541,7 +405,7 @@
                     <input type="hidden" id="editRow">
                     <div class="mb-2"><label>สินค้า</label><input type="text" id="editProd" class="form-control"></div>
                     <div class="row">
-                        <div class="col-6 mb-2"><label>ไซส์</label><input type="text" id="editSize" class="form-control"></div>
+                        <div class="col-6 mb-2"><label>Size</label><input type="text" id="editSize" class="form-control"></div>
                         <div class="col-6 mb-2"><label>จำนวน</label><input type="number" id="editQty" class="form-control"></div>
                     </div>
                     <div class="mb-2"><label>ชื่อ</label><input type="text" id="editName" class="form-control"></div>
@@ -575,7 +439,7 @@
 
         // Size HTML Template
         const sizeOptions = `
-            <option value="-">-- เลือกไซส์ --</option>
+            <option value="-">-- เลือก Size --</option>
             <optgroup label="ผู้ใหญ่">
                 <option value="SS">SS (อก36)</option><option value="S">S (อก38)</option>
                 <option value="M">M (อก40)</option><option value="L">L (อก42)</option>
@@ -620,7 +484,7 @@
 
             let html = '';
             for(let i=0; i<qty; i++) {
-                html += `<div class="mb-2"><label class="small">ไซส์ชิ้นที่ ${i+1}</label><select class="form-select size-item">${sizeOptions}</select></div>`;
+                html += `<div class="mb-2"><label class="small">Size ชิ้นที่ ${i+1}</label><select class="form-select size-item">${sizeOptions}</select></div>`;
             }
             container.innerHTML = html;
             calcTotal();
@@ -656,7 +520,7 @@
                     if (s.value === '-') allSelected = false;
                     sizes.push(s.value);
                 });
-                if(!allSelected) { Swal.fire('กรุณาเลือกไซส์ให้ครบ'); return; }
+                if(!allSelected) { Swal.fire('กรุณาเลือก Size ให้ครบ'); return; }
                 sizeString = sizes.join(', ');
             }
 
@@ -726,9 +590,10 @@
             fetch(WEB_APP_URL + '?action=getOrders')
             .then(res => res.json())
             .then(data => {
-                data.reverse(); // เรียงล่าสุดขึ้นก่อน
+                data.reverse(); 
                 ordersData = data;
                 let html = '';
+                
                 let totalOrders = data.length;
                 let totalRevenue = 0;
 
@@ -740,21 +605,26 @@
                     let price = parseInt(row[8]) || 0;
                     totalRevenue += price;
 
-                    let btns = `<button class="btn btn-secondary btn-sm mb-1" onclick="openViewDetail(${index})"><i class="fas fa-eye"></i></button>`;
+                    let viewBtn = `<button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="openViewDetail(${index})"><i class="fas fa-eye"></i> ดู</button>`;
+                    let adminBtns = '';
                     
                     if(isAdminMode) {
-                        btns += `
-                            <button class="btn btn-success btn-sm mb-1" onclick="approveOrder(${realRow})"><i class="fas fa-check"></i></button>
-                            <button class="btn btn-warning btn-sm mb-1" onclick="openEdit(${index})"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-danger btn-sm mb-1" onclick="delOrder(${realRow})"><i class="fas fa-trash"></i></button>
+                        adminBtns = `
+                            <button class="btn btn-success btn-sm rounded-circle" onclick="approveOrder(${realRow})"><i class="fas fa-check"></i></button>
+                            <button class="btn btn-warning btn-sm rounded-circle" onclick="openEdit(${index})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm rounded-circle" onclick="delOrder(${realRow})"><i class="fas fa-trash"></i></button>
                         `;
                     }
 
                     html += `<tr>
-                        <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
-                        <td>${row[4]}</td><td>${row[5]}</td><td>${row[6]}</td><td>${row[8]}</td>
-                        <td><span class="badge ${statusBadge}">${status}</span></td>
-                        <td>${btns}</td>
+                        <td data-label="วันที่">${row[0]}</td>
+                        <td data-label="ชื่อ">${row[4]}</td>
+                        <td data-label="สินค้า">${row[1]}</td>
+                        <td class="mobile-hide" data-label="Size">${row[2]}</td>
+                        <td class="mobile-hide" data-label="จำนวน">${row[3]}</td>
+                        <td data-label="ยอดรวม">${row[8]}</td>
+                        <td data-label="สถานะ"><span class="status-badge ${statusBadge}">${status}</span></td>
+                        <td data-label="จัดการ">${viewBtn} ${adminBtns}</td>
                     </tr>`;
                 });
 
@@ -772,16 +642,16 @@
             let row = ordersData[index].data;
             let status = row[10] || 'รอตรวจสอบ';
             let html = `
-                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> ${row[0]}</div>
-                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> ${row[4]}</div>
-                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> ${row[5]}</div>
-                <div class="detail-row"><span class="detail-label">สินค้า:</span> ${row[1]}</div>
-                <div class="detail-row"><span class="detail-label">ไซส์:</span> ${row[2]}</div>
-                <div class="detail-row"><span class="detail-label">จำนวน:</span> ${row[3]} ชิ้น</div>
-                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> ${row[6]}</div>
-                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <br>${row[7] || '-'}</div>
-                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> ${row[8]} บาท</div>
-                <div class="detail-row border-0"><span class="detail-label">สถานะ:</span> <strong>${status}</strong></div>
+                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> <span class="detail-value">${row[0]}</span></div>
+                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> <span class="detail-value">${row[4]}</span></div>
+                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> <span class="detail-value">${row[5]}</span></div>
+                <div class="detail-row"><span class="detail-label">สินค้า:</span> <span class="detail-value">${row[1]}</span></div>
+                <div class="detail-row"><span class="detail-label">Size:</span> <span class="detail-value">${row[2]}</span></div>
+                <div class="detail-row"><span class="detail-label">จำนวน:</span> <span class="detail-value">${row[3]} ชิ้น</span></div>
+                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> <span class="detail-value">${row[6]}</span></div>
+                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <span class="detail-value" style="max-width:60%;">${row[7] || '-'}</span></div>
+                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> <span class="detail-value fw-bold text-success">${row[8]} บาท</span></div>
+                <div class="detail-row border-0"><span class="detail-label">สถานะ:</span> <span class="detail-value"><strong>${status}</strong></span></div>
             `;
             document.getElementById('viewDetailBody').innerHTML = html;
             viewDetailModal.show();
