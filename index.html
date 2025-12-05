@@ -10,7 +10,6 @@
 
     <style>
         :root {
-            /* Minimalist Cream & Brown Theme */
             --bg-cream: #FDFBF7;
             --primary-brown: #8D6E63;
             --dark-brown: #5D4037;
@@ -41,12 +40,12 @@
 
         /* Slider */
         .carousel-item {
-            height: 50vh; /* Mobile height */
+            height: 50vh; 
             min-height: 250px;
             background-color: #f4f4f4;
         }
         @media (min-width: 768px) {
-            .carousel-item { height: 75vh; /* Desktop height */ }
+            .carousel-item { height: 75vh; }
         }
         .carousel-item img {
             width: 100%;
@@ -55,17 +54,17 @@
             object-position: center;
         }
 
-        /* Status Button Section */
+        /* Status Button */
         .status-check-section {
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 25px;
+            margin-bottom: 25px;
         }
         .btn-status-check {
             background-color: white;
             color: var(--primary-brown);
             border: 2px solid var(--primary-brown);
-            padding: 10px 30px;
+            padding: 12px 35px;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -94,7 +93,6 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(141, 110, 99, 0.15);
         }
-        
         .product-img-box {
             height: 280px;
             width: 100%;
@@ -109,7 +107,6 @@
             height: 100%;
             object-fit: cover;
         }
-        
         .card-body {
             padding: 25px;
             text-align: center;
@@ -227,6 +224,16 @@
         }
         .card-orders { background: linear-gradient(45deg, #8D6E63, #5D4037); }
         .card-revenue { background: linear-gradient(45deg, #198754, #146c43); }
+        
+        /* View Detail Modal */
+        .detail-row {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: var(--primary-brown);
+        }
     </style>
 </head>
 <body>
@@ -268,7 +275,7 @@
 
     <div class="status-check-section">
         <button class="btn btn-status-check" onclick="openPublicView()">
-            <i class="fas fa-list-alt me-2"></i> ตรวจสอบสถานะคำสั่งซื้อของคุณและทั้งหมด
+            <i class="fas fa-list-alt me-2"></i> ตรวจสอบสถานะคำสั่งซื้อของคุณ
         </button>
     </div>
 
@@ -278,9 +285,7 @@
             
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="https://i.postimg.cc/c4cYRdz3/IMG_6365.jpg" alt="เสื้อ PSL">
-                    </div>
+                    <div class="product-img-box"><img src="https://i.postimg.cc/c4cYRdz3/IMG_6365.jpg" alt="เสื้อ PSL"></div>
                     <div class="card-body">
                         <h4 class="fw-bold">เสื้อที่ระลึก PSL</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">499.-</p>
@@ -288,12 +293,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="https://i.postimg.cc/MKYR7zL1/IMG_256812032211582.png" alt="แก้วน้ำ">
-                    </div>
+                    <div class="product-img-box"><img src="https://i.postimg.cc/MKYR7zL1/IMG_256812032211582.png" alt="แก้วน้ำ"></div>
                     <div class="card-body">
                         <h4 class="fw-bold">แก้วเก็บความเย็น</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">299.-</p>
@@ -301,12 +303,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="https://i.postimg.cc/SNG86mPX/IMG_6356.jpg" alt="ชุดคอมโบ">
-                    </div>
+                    <div class="product-img-box"><img src="https://i.postimg.cc/SNG86mPX/IMG_6356.jpg" alt="ชุดคอมโบ"></div>
                     <div class="card-body">
                         <h4 class="fw-bold">ชุดคอมโบ (เสื้อ+แก้ว)</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">699.-</p>
@@ -322,7 +321,6 @@
         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
             <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตารางไซส์ (Size Chart)</h3>
             <p class="text-center text-muted mb-4">เลือกไซส์ที่เหมาะสมกับคุณ</p>
-
             <div class="row g-5">
                 <div class="col-lg-6">
                     <h5 class="text-center fw-bold text-brown mb-3">ผู้ใหญ่ (Adult)</h5>
@@ -507,7 +505,7 @@
                                         <th>เวลา</th><th>สินค้า</th><th>ไซส์</th><th>จำนวน</th>
                                         <th>ชื่อ</th><th>เบอร์</th><th>ส่ง</th><th>รวม</th>
                                         <th>สถานะ</th>
-                                        <th id="actionHeader">จัดการ</th>
+                                        <th id="actionHeader">รายละเอียด</th>
                                     </tr>
                                 </thead>
                                 <tbody id="dataTableBody"></tbody>
@@ -515,6 +513,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="viewDetailModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title">รายละเอียดคำสั่งซื้อ</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4" id="viewDetailBody">
+                    </div>
             </div>
         </div>
     </div>
@@ -551,13 +562,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // Updated Script URL
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwZ_Re4FhvdnJCgQax7WicsUmlNHbOO0RFsQFxqkPzUcG4dgpGdaPM_ny5la9xHvBc8xQ/exec'; 
 
         const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
         const successModal = new bootstrap.Modal(document.getElementById('successModal'));
         const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
         const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+        const viewDetailModal = new bootstrap.Modal(document.getElementById('viewDetailModal'));
 
         let isAdminMode = false;
         let ordersData = [];
@@ -684,8 +695,8 @@
             document.getElementById('dataModalTitle').innerText = 'รายการสั่งซื้อ (Read Only)';
             document.getElementById('adminLoginSection').style.display = 'none';
             document.getElementById('dataTableSection').style.display = 'block';
-            document.getElementById('actionHeader').style.display = 'none';
-            document.getElementById('adminDashboard').style.display = 'none'; // Hide dashboard for users
+            document.getElementById('actionHeader').style.display = 'table-cell'; 
+            document.getElementById('adminDashboard').style.display = 'none';
             loadOrders();
             dataModal.show();
         }
@@ -715,10 +726,9 @@
             fetch(WEB_APP_URL + '?action=getOrders')
             .then(res => res.json())
             .then(data => {
+                data.reverse(); // เรียงล่าสุดขึ้นก่อน
                 ordersData = data;
                 let html = '';
-                
-                // Calculate Stats
                 let totalOrders = data.length;
                 let totalRevenue = 0;
 
@@ -727,17 +737,16 @@
                     let realRow = item.row;
                     let status = row[10] || 'รอตรวจสอบ';
                     let statusBadge = status === 'อนุมัติแล้ว ✅' ? 'bg-success text-white' : 'bg-warning text-dark';
-                    
-                    // Sum revenue (Column I is index 8)
                     let price = parseInt(row[8]) || 0;
                     totalRevenue += price;
 
-                    let btns = '';
+                    let btns = `<button class="btn btn-secondary btn-sm mb-1" onclick="openViewDetail(${index})"><i class="fas fa-eye"></i></button>`;
+                    
                     if(isAdminMode) {
-                        btns = `
-                            <button class="btn btn-success btn-sm mb-1" onclick="approveOrder(${realRow})">อนุมัติ</button>
-                            <button class="btn btn-warning btn-sm mb-1" onclick="openEdit(${index})">แก้ไข</button>
-                            <button class="btn btn-danger btn-sm" onclick="delOrder(${realRow})">ลบ</button>
+                        btns += `
+                            <button class="btn btn-success btn-sm mb-1" onclick="approveOrder(${realRow})"><i class="fas fa-check"></i></button>
+                            <button class="btn btn-warning btn-sm mb-1" onclick="openEdit(${index})"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm mb-1" onclick="delOrder(${realRow})"><i class="fas fa-trash"></i></button>
                         `;
                     }
 
@@ -745,20 +754,37 @@
                         <td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td>${row[3]}</td>
                         <td>${row[4]}</td><td>${row[5]}</td><td>${row[6]}</td><td>${row[8]}</td>
                         <td><span class="badge ${statusBadge}">${status}</span></td>
-                        ${isAdminMode ? `<td>${btns}</td>` : ''}
+                        <td>${btns}</td>
                     </tr>`;
                 });
 
                 document.getElementById('dataTableBody').innerHTML = html;
-                document.getElementById('actionHeader').style.display = isAdminMode ? 'table-cell' : 'none';
 
-                // Update Dashboard (Only show if admin)
                 if(isAdminMode) {
                     document.getElementById('adminDashboard').style.display = 'flex';
                     document.getElementById('adminTotalOrders').innerText = totalOrders + ' รายการ';
                     document.getElementById('adminTotalRevenue').innerText = totalRevenue.toLocaleString() + ' ฿';
                 }
             });
+        }
+
+        function openViewDetail(index) {
+            let row = ordersData[index].data;
+            let status = row[10] || 'รอตรวจสอบ';
+            let html = `
+                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> ${row[0]}</div>
+                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> ${row[4]}</div>
+                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> ${row[5]}</div>
+                <div class="detail-row"><span class="detail-label">สินค้า:</span> ${row[1]}</div>
+                <div class="detail-row"><span class="detail-label">ไซส์:</span> ${row[2]}</div>
+                <div class="detail-row"><span class="detail-label">จำนวน:</span> ${row[3]} ชิ้น</div>
+                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> ${row[6]}</div>
+                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <br>${row[7] || '-'}</div>
+                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> ${row[8]} บาท</div>
+                <div class="detail-row border-0"><span class="detail-label">สถานะ:</span> <strong>${status}</strong></div>
+            `;
+            document.getElementById('viewDetailBody').innerHTML = html;
+            viewDetailModal.show();
         }
 
         function approveOrder(rowId) {
