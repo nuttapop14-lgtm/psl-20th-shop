@@ -42,7 +42,7 @@
             display: flex;
             align-items: center;
         }
-        /* Logo style */
+        /* Logo Custom Style */
         .custom-navbar-icon {
             height: 1.5rem;
             width: auto;
@@ -148,7 +148,32 @@
             transform: scale(1.02);
         }
 
-        /* Tables */
+        /* New Size Chart Styles (Mobile Friendly) */
+        .nav-pills .nav-link {
+            color: var(--text-color);
+            background-color: #f0f0f0;
+            border-radius: 50px;
+            margin: 0 5px;
+            padding: 8px 20px;
+            font-weight: 500;
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-brown);
+            color: white;
+        }
+        .table-size th {
+            background-color: var(--light-brown);
+            color: var(--dark-brown);
+            font-weight: 600;
+            border: none;
+        }
+        .table-size td {
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+        .table-size tr:last-child td { border-bottom: none; }
+
+        /* Tables (General) */
         .table-custom {
             background: white;
             border-radius: 12px;
@@ -265,7 +290,7 @@
     <nav class="navbar fixed-top">
         <div class="container">
             <span class="navbar-brand mx-auto">
-                <img src="https://i.postimg.cc/NGx45YYr/3_(1).png" alt="Logo" class="custom-navbar-icon"> PSL 20th Anniversary
+                <img src="images/3.png" alt="Logo" class="custom-navbar-icon"> PSL 20th Anniversary
             </span>
         </div>
     </nav>
@@ -278,6 +303,7 @@
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
+	        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active"><img src="images/11.jpg" alt="Slide 1" fetchpriority="high"></div>
@@ -286,6 +312,7 @@
             <div class="carousel-item"><img src="images/14.jpg" loading="lazy" alt="Slide 4"></div>
             <div class="carousel-item"><img src="images/15.jpg" loading="lazy" alt="Slide 5"></div>
             <div class="carousel-item"><img src="images/16.jpg" loading="lazy" alt="Slide 6"></div>
+	         <div class="carousel-item"><img src="images/17.jpg" loading="lazy" alt="Slide 6"></div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon"></span>
@@ -348,16 +375,24 @@
     </div>
 
     <div class="container pb-5">
-        <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
+        <div class="bg-white p-4 rounded-4 shadow-sm">
             <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตาราง Size (Size Chart)</h3>
             <p class="text-center text-muted mb-4">เลือก Size ที่เหมาะสมกับคุณ</p>
 
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <h5 class="text-center fw-bold text-brown mb-3">ผู้ใหญ่ (Adult)</h5>
+            <ul class="nav nav-pills justify-content-center mb-3" id="sizeTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="adult-tab" data-bs-toggle="pill" data-bs-target="#adult" type="button">ผู้ใหญ่ (Adult)</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="junior-tab" data-bs-toggle="pill" data-bs-target="#junior" type="button">เด็ก (Junior)</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="sizeTabContent">
+                <div class="tab-pane fade show active" id="adult" role="tabpanel">
                     <div class="table-responsive">
-                        <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
+                        <table class="table text-center table-size">
+                            <thead><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>SS</td><td>36"</td><td>26"</td></tr>
                                 <tr><td>S</td><td>38"</td><td>27"</td></tr>
@@ -374,11 +409,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <h5 class="text-center fw-bold text-brown mb-3">เด็ก (Junior)</h5>
+                <div class="tab-pane fade" id="junior" role="tabpanel">
                     <div class="table-responsive">
-                        <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
+                        <table class="table text-center table-size">
+                            <thead><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>2S</td><td>24"</td><td>18"</td></tr>
                                 <tr><td>S</td><td>26"</td><td>19"</td></tr>
@@ -401,7 +435,7 @@
             <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> กัปตัน: <a href="tel:0969808374" class="fw-bold text-dark text-decoration-none">096-980-8374</a></span>
         </div>
         <div class="action-buttons">
-            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> ดูรายการสั่งซื้อทั้งหมด</span>
+            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> ดูสถานะคำสั่งซื้อ</span>
             <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-cog"></i> ผู้ดูแลระบบ (Admin)</span>
         </div>
     </div>
@@ -421,11 +455,11 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small text-muted">ชื่อ-นามสกุล</label>
-                                <input type="text" id="c_name" class="form-control" placeholder="ระบุชื่อจริง" required>
+                                <input type="text" id="c_name" class="form-control" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="small text-muted">เบอร์โทรศัพท์ (10 หลัก)</label>
-                                <input type="tel" id="c_phone" class="form-control" placeholder="0XXXXXXXXX" maxlength="10" required>
+                                <input type="tel" id="c_phone" class="form-control" maxlength="10" required>
                             </div>
                         </div>
 
@@ -447,20 +481,19 @@
                             </div>
                         </div>
 
-                        <div class="bank-box mb-4">
-                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold display-6">0</span> บาท</h4>
-                            <div class="p-3 mb-2 bg-white rounded border d-inline-block shadow-sm">
-                                <p class="mb-1 fw-bold text-primary">ธนาคารกรุงไทย</p>
-                                <p class="mb-1">ชื่อบัญชี: นายณรรถภพ สราญรมย์</p>
-                                <p class="mb-0 fs-5 fw-bold">679-3-95520-9</p>
+                        <div class="p-3 mb-3 bg-light rounded text-center border">
+                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
+                            <div class="bg-white p-2 rounded d-inline-block border mb-2">
+                                <small>ธนาคารกรุงไทย</small><br>
+                                <strong>นายณรรถภพ สราญรมย์</strong><br>
+                                <span class="fs-5 fw-bold text-primary">679-3-95520-9</span>
                             </div>
-                            <div class="mt-2">
-                                <img src="https://i.postimg.cc/Wp9tqcfg/IMG_3380.jpg" alt="QR Code" style="width: 180px; border-radius: 8px; border: 1px solid #ddd;">
-                            </div>
+                            <br>
+                            <img src="images/qr.jpg" alt="QR Code" style="width: 150px; border-radius: 8px; border: 1px solid #ddd;">
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label fw-bold text-danger small">* กรุณาแนบสลิปการโอนเงินเพื่อยืนยัน</label>
+                            <label class="text-danger fw-bold small">* แนบสลิปการโอนเงินเพื่อยืนยัน</label>
                             <input type="file" id="slipFile" class="form-control" accept="image/*" required>
                         </div>
                     </form>
@@ -486,15 +519,11 @@
                     <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
                     <h2 class="fw-bold mb-2">ซื้อสำเร็จ!</h2>
                     <h5 class="mb-4 text-muted">ขอบคุณสำหรับคำสั่งซื้อของคุณ</h5>
-                    
-                    <p class="small text-secondary mb-4">ขอบคุณทุกการสนับสนุนซื้อเสื้อและแก้วที่ระลึกครบรอบ 20 ปี รายได้จะถูกนำไปบริหารจัดการเพื่อจัดซื้ออุปกรณ์ฟุตบอลที่จำเป็น รวมถึงติดตั้งระบบไฟส่องสว่างให้กับสนามฟุตบอล PSL</p>
-                    
-                    <div class="success-box">
-                        <h5 class="fw-bold text-brown mb-2"><i class="fas fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
+                    <div class="bg-warning bg-opacity-25 p-3 rounded">
+                        <h5 class="fw-bold text-brown mb-2"><i class="fa-solid fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
                         <p class="mb-1">วันที่ 30 ธ.ค. 68 เวลา 16:00 น. เป็นต้นไป</p>
                         <p class="mb-0 fw-bold">เชิญชวนพี่น้องๆ มาร่วมเตะฟุตบอลกันนะครับ!</p>
                     </div>
-
                     <button class="btn btn-secondary w-100 mt-4" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
                 </div>
             </div>
@@ -508,7 +537,7 @@
                     <h5 class="modal-title" id="dataModalTitle">รายการสั่งซื้อ</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body bg-light">
                     <div id="adminLoginSection" class="text-center py-5" style="display:none;">
                         <h4 class="mb-3">Admin Login</h4>
                         <input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน">
@@ -542,8 +571,8 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover small align-middle text-center">
-                                <thead class="table-secondary">
+                            <table class="table table-hover align-middle mb-0 bg-white">
+                                <thead class="table-secondary text-center">
                                     <tr>
                                         <th>วันที่</th>
                                         <th>ชื่อลูกค้า</th>
@@ -612,7 +641,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        // URL ของ Google Apps Script ที่ระบุมา
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwZ_Re4FhvdnJCgQax7WicsUmlNHbOO0RFsQFxqkPzUcG4dgpGdaPM_ny5la9xHvBc8xQ/exec'; 
 
         const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
