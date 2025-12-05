@@ -10,40 +10,43 @@
 
     <style>
         :root {
+            /* Minimalist Cream & Brown Theme */
             --bg-cream: #FDFBF7;
             --primary-brown: #8D6E63;
             --dark-brown: #5D4037;
             --light-brown: #D7CCC8;
-            --white: #ffffff;
+            --soft-white: #ffffff;
+            --text-color: #4E342E;
         }
 
         body {
             font-family: 'Prompt', sans-serif;
             background-color: var(--bg-cream);
-            color: var(--dark-brown);
+            color: var(--text-color);
             padding-bottom: 80px;
         }
 
         /* Navbar */
         .navbar {
-            background-color: rgba(253, 251, 247, 0.98);
-            box-shadow: 0 4px 15px rgba(141, 110, 99, 0.1);
-            backdrop-filter: blur(10px);
+            background-color: rgba(253, 251, 247, 0.95);
+            box-shadow: 0 2px 15px rgba(141, 110, 99, 0.1);
+            backdrop-filter: blur(8px);
         }
         .navbar-brand {
             font-weight: 600;
             color: var(--dark-brown) !important;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
         }
 
         /* Slider */
         .carousel-item {
-            height: 40vh; /* Mobile height */
+            height: 50vh; /* Mobile height */
             min-height: 250px;
-            background-color: #eee;
+            background-color: #f4f4f4;
         }
         @media (min-width: 768px) {
-            .carousel-item { height: 70vh; /* Desktop height */ }
+            .carousel-item { height: 75vh; /* Desktop height */ }
         }
         .carousel-item img {
             width: 100%;
@@ -52,13 +55,36 @@
             object-position: center;
         }
 
+        /* Status Button Section */
+        .status-check-section {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .btn-status-check {
+            background-color: white;
+            color: var(--primary-brown);
+            border: 2px solid var(--primary-brown);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .btn-status-check:hover {
+            background-color: var(--primary-brown);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(141, 110, 99, 0.2);
+        }
+
         /* Product Cards */
         .product-card {
-            background: var(--white);
+            background: var(--soft-white);
             border: none;
-            border-radius: 15px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(141, 110, 99, 0.08);
+            box-shadow: 0 5px 20px rgba(141, 110, 99, 0.08);
             transition: all 0.3s ease;
             height: 100%;
             display: flex;
@@ -66,13 +92,14 @@
         }
         .product-card:hover { 
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(141, 110, 99, 0.15);
+            box-shadow: 0 10px 25px rgba(141, 110, 99, 0.15);
         }
+        
         .product-img-box {
             height: 280px;
             width: 100%;
             overflow: hidden;
-            background-color: #f9f9f9;
+            background-color: #fafafa;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -82,8 +109,9 @@
             height: 100%;
             object-fit: cover;
         }
+        
         .card-body {
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             flex-grow: 1;
             display: flex;
@@ -95,15 +123,18 @@
             background-color: var(--primary-brown);
             color: white;
             border-radius: 50px;
-            padding: 10px 0;
+            padding: 12px 0;
             border: none;
             width: 100%;
             font-weight: 500;
+            font-size: 1.05rem;
             transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(141, 110, 99, 0.2);
         }
         .btn-custom:hover {
             background-color: var(--dark-brown);
             color: white;
+            transform: scale(1.02);
         }
 
         /* Tables */
@@ -111,7 +142,8 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid #eee;
         }
         .table-custom thead {
@@ -119,39 +151,35 @@
             color: white;
         }
         .table-custom th, .table-custom td {
+            padding: 12px 8px;
             vertical-align: middle;
-            padding: 10px;
         }
-
-        /* Badge Status */
-        .badge-pending { background-color: #ffc107; color: #000; }
-        .badge-approved { background-color: #198754; color: #fff; }
 
         /* Footer */
         .footer-contact {
             background-color: white;
-            padding: 40px 15px;
+            padding: 50px 20px;
             border-top: 1px solid #eee;
-            margin-top: 50px;
+            margin-top: 60px;
             text-align: center;
         }
         .action-buttons {
-            margin-top: 25px;
+            margin-top: 30px;
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
         }
         .btn-link-custom {
-            font-size: 0.85rem;
-            color: #666;
+            font-size: 0.9rem;
+            color: #888;
             text-decoration: none;
             cursor: pointer;
             border: 1px solid #ddd;
             padding: 8px 20px;
             border-radius: 30px;
-            background: white;
             transition: all 0.2s;
+            background: white;
         }
         .btn-link-custom:hover {
             background-color: var(--primary-brown);
@@ -159,24 +187,53 @@
             border-color: var(--primary-brown);
         }
 
-        /* Modal */
-        .modal-content { border-radius: 15px; border: none; }
-        .modal-header { background-color: var(--bg-cream); color: var(--dark-brown); border-bottom: 1px solid var(--light-brown); }
+        /* Modal Elements */
+        .modal-content { border-radius: 16px; border: none; }
+        .modal-header { background-color: var(--bg-cream); color: var(--dark-brown); border-bottom: 1px solid var(--light-brown); border-radius: 16px 16px 0 0; }
+        
         .bank-box {
             background-color: #EFEBE9;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 12px;
             margin-top: 15px;
             text-align: center;
             border: 2px dashed var(--primary-brown);
         }
+        .form-control, .form-select {
+            border-radius: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-brown);
+            box-shadow: 0 0 0 0.25rem rgba(141, 110, 99, 0.2);
+        }
+        .success-box {
+            background-color: #FFF8E1;
+            border: 1px solid #FFECB3;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Admin Dashboard Cards */
+        .dashboard-card {
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .card-orders { background: linear-gradient(45deg, #8D6E63, #5D4037); }
+        .card-revenue { background: linear-gradient(45deg, #198754, #146c43); }
     </style>
 </head>
 <body>
 
     <nav class="navbar fixed-top">
         <div class="container">
-            <span class="navbar-brand mx-auto"><i class="fas fa-certificate"></i> PSL 20th Anniversary</span>
+            <span class="navbar-brand mx-auto"><i class="fa-solid fa-futbol"></i> PSL 20th Anniversary</span>
         </div>
     </nav>
 
@@ -209,12 +266,21 @@
         </button>
     </div>
 
-    <div class="container py-5">
+    <div class="status-check-section">
+        <button class="btn btn-status-check" onclick="openPublicView()">
+            <i class="fas fa-list-alt me-2"></i> ตรวจสอบสถานะคำสั่งซื้อของคุณและทั้งหมด
+        </button>
+    </div>
+
+    <div class="container py-4">
         <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-brown);">COLLECTION PRODUCT</h2>
         <div class="row g-4 justify-content-center">
+            
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box"><img src="https://i.postimg.cc/c4cYRdz3/IMG_6365.jpg" alt="เสื้อ"></div>
+                    <div class="product-img-box">
+                        <img src="https://i.postimg.cc/c4cYRdz3/IMG_6365.jpg" alt="เสื้อ PSL">
+                    </div>
                     <div class="card-body">
                         <h4 class="fw-bold">เสื้อที่ระลึก PSL</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">499.-</p>
@@ -222,9 +288,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box"><img src="https://i.postimg.cc/MKYR7zL1/IMG_256812032211582.png" alt="แก้ว"></div>
+                    <div class="product-img-box">
+                        <img src="https://i.postimg.cc/MKYR7zL1/IMG_256812032211582.png" alt="แก้วน้ำ">
+                    </div>
                     <div class="card-body">
                         <h4 class="fw-bold">แก้วเก็บความเย็น</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">299.-</p>
@@ -232,9 +301,12 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 col-md-4">
                 <div class="product-card">
-                    <div class="product-img-box"><img src="https://i.postimg.cc/SNG86mPX/IMG_6356.jpg" alt="ชุดคอมโบ"></div>
+                    <div class="product-img-box">
+                        <img src="https://i.postimg.cc/SNG86mPX/IMG_6356.jpg" alt="ชุดคอมโบ">
+                    </div>
                     <div class="card-body">
                         <h4 class="fw-bold">ชุดคอมโบ (เสื้อ+แก้ว)</h4>
                         <p class="text-brown fs-3 fw-bold mb-3">699.-</p>
@@ -242,6 +314,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -249,12 +322,13 @@
         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
             <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตารางไซส์ (Size Chart)</h3>
             <p class="text-center text-muted mb-4">เลือกไซส์ที่เหมาะสมกับคุณ</p>
+
             <div class="row g-5">
                 <div class="col-lg-6">
                     <h5 class="text-center fw-bold text-brown mb-3">ผู้ใหญ่ (Adult)</h5>
                     <div class="table-responsive">
                         <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>SS</td><td>36"</td><td>26"</td></tr>
                                 <tr><td>S</td><td>38"</td><td>27"</td></tr>
@@ -275,7 +349,7 @@
                     <h5 class="text-center fw-bold text-brown mb-3">เด็ก (Junior)</h5>
                     <div class="table-responsive">
                         <table class="table table-custom table-striped text-center align-middle">
-                            <thead><tr><th>Size</th><th>อก (นิ้ว)</th><th>ยาว (นิ้ว)</th></tr></thead>
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>2S</td><td>24"</td><td>18"</td></tr>
                                 <tr><td>S</td><td>26"</td><td>19"</td></tr>
@@ -297,9 +371,9 @@
             <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> ฟิล์ม: <a href="tel:0953205156" class="fw-bold text-dark text-decoration-none">095-320-5156</a></span>
             <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> กัปตัน: <a href="tel:0969808374" class="fw-bold text-dark text-decoration-none">096-980-8374</a></span>
         </div>
+        
         <div class="action-buttons">
-            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> ดูสถานะคำสั่งซื้อ</span>
-            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-cog"></i> ผู้ดูแลระบบ (Admin)</span>
+            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-lock"></i> ผู้ดูแลระบบ (Admin)</span>
         </div>
     </div>
 
@@ -318,11 +392,11 @@
                         <div class="row g-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small text-muted">ชื่อ-นามสกุล</label>
-                                <input type="text" id="c_name" class="form-control" required>
+                                <input type="text" id="c_name" class="form-control" placeholder="ระบุชื่อจริง" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="small text-muted">เบอร์โทรศัพท์ (10 หลัก)</label>
-                                <input type="tel" id="c_phone" class="form-control" maxlength="10" required>
+                                <input type="tel" id="c_phone" class="form-control" placeholder="0XXXXXXXXX" maxlength="10" required>
                             </div>
                         </div>
 
@@ -340,29 +414,31 @@
                                 <input type="radio" name="delivery" id="del_ship" value="ship" onchange="toggleAddr()"> <label for="del_ship">จัดส่ง (+30 บาท)</label>
                             </div>
                             <div class="mt-2" id="addrBox" style="display:none;">
-                                <textarea id="c_addr" class="form-control" rows="2" placeholder="ที่อยู่จัดส่ง..."></textarea>
+                                <textarea id="c_addr" class="form-control" rows="2" placeholder="กรุณาระบุที่อยู่จัดส่งให้ชัดเจน..."></textarea>
                             </div>
                         </div>
 
-                        <div class="bank-box mb-3">
-                            <h4>ยอดชำระ: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
-                            <div class="bg-white p-2 rounded d-inline-block border mt-2">
-                                <small>ธนาคารกรุงไทย</small><br>
-                                <strong>นายณรรถภพ สราญรมย์</strong><br>
-                                <span class="fs-5 fw-bold text-primary">679-3-95520-9</span>
+                        <div class="bank-box mb-4">
+                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold display-6">0</span> บาท</h4>
+                            <div class="p-3 mb-2 bg-white rounded border d-inline-block shadow-sm">
+                                <p class="mb-1 fw-bold text-primary">ธนาคารกรุงไทย</p>
+                                <p class="mb-1">ชื่อบัญชี: นายณรรถภพ สราญรมย์</p>
+                                <p class="mb-0 fs-5 fw-bold">679-3-95520-9</p>
                             </div>
-                            <div class="mt-2"><img src="https://i.postimg.cc/Wp9tqcfg/IMG_3380.jpg" width="150" class="border rounded"></div>
+                            <div class="mt-2">
+                                <img src="https://i.postimg.cc/Wp9tqcfg/IMG_3380.jpg" alt="QR Code" style="width: 180px; border-radius: 8px; border: 1px solid #ddd;">
+                            </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="text-danger fw-bold small">* แนบสลิปการโอน</label>
+                            <label class="form-label fw-bold text-danger small">* กรุณาแนบสลิปการโอนเงินเพื่อยืนยัน</label>
                             <input type="file" id="slipFile" class="form-control" accept="image/*" required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-custom" onclick="validateAndSubmit()">ยืนยัน</button>
+                    <button type="button" class="btn btn-custom" onclick="validateAndSubmit()">ยืนยันการสั่งซื้อ</button>
                 </div>
             </div>
         </div>
@@ -370,16 +446,21 @@
 
     <div class="modal fade" id="successModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center">
+            <div class="modal-content text-center border-0">
                 <div class="modal-body p-5">
-                    <h2 class="text-success fw-bold">ซื้อสำเร็จ!</h2>
-                    <p>ขอบคุณทุกการสนับสนุนซื้อเสื้อและแก้วที่ระลึกครบรอบ 20 ปี</p>
-                    <div class="alert alert-warning">
-                        <h5>เชิญชวนมาเตะฟุตบอล</h5>
-                        <p>30 ธ.ค. 68 เวลา 16:00 น. เป็นต้นไป</p>
-                        <strong>มาร่วมเตะฟุตบอลกันนะครับ!</strong>
+                    <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
+                    <h2 class="fw-bold mb-2">ซื้อสำเร็จ!</h2>
+                    <h5 class="mb-4 text-muted">ขอบคุณสำหรับคำสั่งซื้อของคุณ</h5>
+                    
+                    <p class="small text-secondary mb-4">ขอบคุณทุกการสนับสนุนซื้อเสื้อและแก้วที่ระลึกครบรอบ 20 ปี รายได้จะถูกนำไปบริหารจัดการเพื่อจัดซื้ออุปกรณ์ฟุตบอลที่จำเป็น รวมถึงติดตั้งระบบไฟส่องสว่างให้กับสนามฟุตบอล PSL</p>
+                    
+                    <div class="success-box">
+                        <h5 class="fw-bold text-brown mb-2"><i class="fas fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
+                        <p class="mb-1">วันที่ 30 ธ.ค. 68 เวลา 16:00 น. เป็นต้นไป</p>
+                        <p class="mb-0 fw-bold">เชิญชวนพี่น้องๆ มาร่วมเตะฟุตบอลกันนะครับ!</p>
                     </div>
-                    <button class="btn btn-secondary w-100" data-bs-dismiss="modal">ปิด</button>
+
+                    <button class="btn btn-secondary w-100 mt-4" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
                 </div>
             </div>
         </div>
@@ -398,8 +479,27 @@
                         <input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน">
                         <button class="btn btn-dark" onclick="checkAdmin()">เข้าสู่ระบบ</button>
                     </div>
+                    
                     <div id="dataTableSection" style="display:none;">
-                        <button class="btn btn-success mb-2 btn-sm" onclick="loadOrders()">รีเฟรช</button>
+                        
+                        <div id="adminDashboard" class="row mb-4" style="display:none;">
+                            <div class="col-md-6">
+                                <div class="dashboard-card card-orders">
+                                    <h5 class="mb-2"><i class="fas fa-shopping-bag"></i> จำนวนคำสั่งซื้อทั้งหมด</h5>
+                                    <h2 class="mb-0" id="adminTotalOrders">0</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dashboard-card card-revenue">
+                                    <h5 class="mb-2"><i class="fas fa-coins"></i> รายได้ทั้งหมด</h5>
+                                    <h2 class="mb-0" id="adminTotalRevenue">0 ฿</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mb-2">
+                            <button class="btn btn-success btn-sm" onclick="loadOrders()"><i class="fas fa-sync"></i> รีเฟรชข้อมูล</button>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover small align-middle text-center">
                                 <thead class="table-secondary">
@@ -423,21 +523,24 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5>แก้ไขข้อมูล</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title">แก้ไขข้อมูล (Admin)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <input type="hidden" id="editRow">
-                    <label>สินค้า</label><input type="text" id="editProd" class="form-control mb-2">
-                    <label>ไซส์</label><input type="text" id="editSize" class="form-control mb-2">
-                    <label>จำนวน</label><input type="number" id="editQty" class="form-control mb-2">
-                    <label>ชื่อ</label><input type="text" id="editName" class="form-control mb-2">
-                    <label>เบอร์</label><input type="text" id="editPhone" class="form-control mb-2">
-                    <label>จัดส่ง</label><input type="text" id="editDel" class="form-control mb-2">
-                    <label>ที่อยู่</label><input type="text" id="editAddr" class="form-control mb-2">
-                    <label>ยอดรวม</label><input type="text" id="editTotal" class="form-control mb-2">
+                    <div class="mb-2"><label>สินค้า</label><input type="text" id="editProd" class="form-control"></div>
+                    <div class="row">
+                        <div class="col-6 mb-2"><label>ไซส์</label><input type="text" id="editSize" class="form-control"></div>
+                        <div class="col-6 mb-2"><label>จำนวน</label><input type="number" id="editQty" class="form-control"></div>
+                    </div>
+                    <div class="mb-2"><label>ชื่อ</label><input type="text" id="editName" class="form-control"></div>
+                    <div class="mb-2"><label>เบอร์</label><input type="text" id="editPhone" class="form-control"></div>
+                    <div class="mb-2"><label>การจัดส่ง</label><input type="text" id="editDel" class="form-control"></div>
+                    <div class="mb-2"><label>ที่อยู่</label><textarea id="editAddr" class="form-control"></textarea></div>
+                    <div class="mb-2"><label>ยอดรวม</label><input type="text" id="editTotal" class="form-control"></div>
                 </div>
                 <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                     <button class="btn btn-primary" onclick="saveEdit()">บันทึก</button>
                 </div>
             </div>
@@ -448,6 +551,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        // Updated Script URL
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwZ_Re4FhvdnJCgQax7WicsUmlNHbOO0RFsQFxqkPzUcG4dgpGdaPM_ny5la9xHvBc8xQ/exec'; 
 
         const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
@@ -581,6 +685,7 @@
             document.getElementById('adminLoginSection').style.display = 'none';
             document.getElementById('dataTableSection').style.display = 'block';
             document.getElementById('actionHeader').style.display = 'none';
+            document.getElementById('adminDashboard').style.display = 'none'; // Hide dashboard for users
             loadOrders();
             dataModal.show();
         }
@@ -612,12 +717,21 @@
             .then(data => {
                 ordersData = data;
                 let html = '';
+                
+                // Calculate Stats
+                let totalOrders = data.length;
+                let totalRevenue = 0;
+
                 data.forEach((item, index) => {
                     let row = item.data;
                     let realRow = item.row;
                     let status = row[10] || 'รอตรวจสอบ';
-                    let statusBadge = status === 'อนุมัติแล้ว ✅' ? 'badge-approved' : 'badge-pending';
+                    let statusBadge = status === 'อนุมัติแล้ว ✅' ? 'bg-success text-white' : 'bg-warning text-dark';
                     
+                    // Sum revenue (Column I is index 8)
+                    let price = parseInt(row[8]) || 0;
+                    totalRevenue += price;
+
                     let btns = '';
                     if(isAdminMode) {
                         btns = `
@@ -634,8 +748,16 @@
                         ${isAdminMode ? `<td>${btns}</td>` : ''}
                     </tr>`;
                 });
+
                 document.getElementById('dataTableBody').innerHTML = html;
                 document.getElementById('actionHeader').style.display = isAdminMode ? 'table-cell' : 'none';
+
+                // Update Dashboard (Only show if admin)
+                if(isAdminMode) {
+                    document.getElementById('adminDashboard').style.display = 'flex';
+                    document.getElementById('adminTotalOrders').innerText = totalOrders + ' รายการ';
+                    document.getElementById('adminTotalRevenue').innerText = totalRevenue.toLocaleString() + ' ฿';
+                }
             });
         }
 
