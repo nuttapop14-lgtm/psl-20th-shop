@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/..." rel="stylesheet">
 
     <style>
         :root {
@@ -690,7 +692,15 @@
             calcTotal();
             orderModal.show();
         }
-
+        // Utility: escape HTML to prevent XSS
+        function escapeHTML(unsafe) {
+            return String(unsafe === undefined || unsafe === null ? '' : unsafe)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
         function updateSizeInputs() {
             const qty = parseInt(document.getElementById('c_qty').value) || 1;
             const container = document.getElementById('dynamicSizeContainer');
@@ -719,55 +729,87 @@
         }
 
         function validateAndSubmit() {
-            let name = document.getElementById('c_name').value.trim();
-            let phone = document.getElementById('c_phone').value.trim();
-            let slip = document.getElementById('slipFile').value;
-            let qty = parseInt(document.getElementById('c_qty').value);
-            
-            let sizeString = '-';
-            const container = document.getElementById('dynamicSizeContainer');
-            if (container.style.display !== 'none') {
-                const selects = container.querySelectorAll('.size-item');
-                let sizes = [];
-                let allSelected = true;
-                selects.forEach(s => {
-                    if (s.value === '-') allSelected = false;
-                    sizes.push(s.value);
-                });
-                if(!allSelected) { Swal.fire('กรุณาเลือก Size ให้ครบ'); return; }
-                sizeString = sizes.join(', ');
-            }
+    let name = document.getElementById('c_name').value.trim();
+    let phone = document.getElementById('c_phone').value.trim();
+    let qty = parseInt(document.getElementById('c_qty').value, 10) || 1;
 
-            if(!name || !/^[0-9]{10}$/.test(phone)) { Swal.fire('ข้อมูลไม่ถูกต้อง'); return; }
-            if(!slip) { Swal.fire('กรุณาแนบสลิป'); return; }
+    // Size processing (เดิม)
+    let sizeString = '-';
+    const container = document.getElementById('dynamicSizeContainer');
+    if (container.style.display !== 'none') {
+        const selects = container.querySelectorAll('.size-item');
+        let sizes = [];
+        let allSelected = true;
+        selects.forEach(s => {
+            if (s.value === '-') allSelected = false;
+            sizes.push(s.value);
+        });
+        if (!allSelected) { Swal.fire('กรุณาเลือก Size ให้ครบ'); return; }
+        sizeString = sizes.join(', ');
+    }
 
-            Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    // ตรวจข้อมูลพื้นฐาน
+    if (!name || !/^[0-9]{10}$/.test(phone)) { Swal.fire('ข้อมูลไม่ถูกต้อง'); return; }
 
-            let formData = new FormData();
-            formData.append('action', 'order');
-            formData.append('product', document.getElementById('p_name').value);
-            formData.append('size', sizeString);
-            formData.append('qty', qty);
-            formData.append('name', name);
-            formData.append('phone', phone);
-            formData.append('delivery', document.getElementById('del_ship').checked ? 'จัดส่ง' : 'รับเอง');
-            formData.append('address', document.getElementById('c_addr').value);
-            formData.append('total', document.getElementById('totalDisplay').innerText);
+    // ตรวจไฟล์สลิป: ตรวจว่ามีไฟล์และขนาดไม่เกิน 5MB และเป็น image (เบื้องต้น)
+    const slipInput = document.getElementById('slipFile');
+    if (!slipInput.files || !slipInput.files[0]) {
+        Swal.fire('กรุณาแนบสลิป');
+        return;
+    }
+    const slipFile = slipInput.files[0];
 
-            fetch(WEB_APP_URL, { method: 'POST', body: formData })
-            .then(res => res.json())
-            .then(data => {
-                Swal.close();
-                if(data.result === 'success') {
-                    orderModal.hide();
-                    successModal.show();
-                } else {
-                    Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error');
-                }
-            })
-            .catch(() => Swal.fire('Error', 'เชื่อมต่อไม่ได้', 'error'));
+    // ขนาดสูงสุด 5MB
+    const MAX_MB = 5;
+    if (slipFile.size > MAX_MB * 1024 * 1024) {
+        Swal.fire(`ไฟล์ขนาดสูงสุด ${MAX_MB}MB`);
+        return;
+    }
+
+    // ตรวจชนิดไฟล์พื้นฐาน (ถ้าต้องการอนุญาตเฉพาะรูปภาพ)
+    if (slipFile.type && !slipFile.type.startsWith('image/')) {
+        // ถ้าอยากอนุญาต PDF ให้เพิ่มเงื่อนไข .pdf ด้วย
+        Swal.fire('กรุณาอัปโหลดไฟล์รูปภาพ (jpg/png) เท่านั้น');
+        return;
+    }
+
+    Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+    let formData = new FormData();
+    formData.append('action', 'order');
+    formData.append('product', document.getElementById('p_name').value);
+    formData.append('size', sizeString);
+    formData.append('qty', qty);
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('delivery', document.getElementById('del_ship').checked ? 'จัดส่ง' : 'รับเอง');
+    formData.append('address', document.getElementById('c_addr') ? document.getElementById('c_addr').value : '');
+    formData.append('total', document.getElementById('totalDisplay').innerText);
+
+    // แนบไฟล์สลิปจริงลงไปใน FormData
+    formData.append('slip', slipFile);
+
+    fetch(WEB_APP_URL, { method: 'POST', body: formData })
+    .then(res => {
+        // ตรวจ response.ok ก่อน และ ถ้าเป็น json ให้ parse
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+    })
+    .then(data => {
+        Swal.close();
+        if (data.result === 'success') {
+            orderModal.hide();
+            successModal.show();
+        } else {
+            Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error');
         }
-
+    })
+    .catch((err) => {
+        Swal.close();
+        console.error(err);
+        Swal.fire('Error', 'เชื่อมต่อไม่ได้หรือเกิดข้อผิดพลาด', 'error');
+    });
+}
         function openPublicView() {
             isAdminMode = false;
             document.getElementById('dataModalTitle').innerText = 'รายการสั่งซื้อ (Read Only)';
@@ -800,74 +842,181 @@
         }
 
         function loadOrders() {
-            document.getElementById('dataTableBody').innerHTML = '<tr><td colspan="10">Loading...</td></tr>';
-            fetch(WEB_APP_URL + '?action=getOrders')
-            .then(res => res.json())
-            .then(data => {
-                data.reverse(); 
-                ordersData = data;
-                let html = '';
-                
-                let totalOrders = data.length;
-                let totalRevenue = 0;
+            function loadOrders() {
+    const tbody = document.getElementById('dataTableBody');
+    tbody.innerHTML = '<tr><td colspan="8">กำลังโหลด...</td></tr>';
 
-                data.forEach((item, index) => {
-                    let row = item.data;
-                    let realRow = item.row;
-                    let status = row[10] || 'รอตรวจสอบ';
-                    let statusBadge = status === 'อนุมัติแล้ว ✅' ? 'bg-success text-white' : 'bg-warning text-dark';
-                    let price = parseInt(row[8]) || 0;
-                    totalRevenue += price;
+    fetch(WEB_APP_URL + '?action=getOrders')
+    .then(res => {
+        if (!res.ok) throw new Error('Network response was not ok');
+        return res.json();
+    })
+    .then(rawData => {
+        // ป้องกันกรณี data ไม่ใช่ array
+        const dataArray = Array.isArray(rawData) ? rawData.slice().reverse() : [];
+        // เก็บสำเนาไว้ใน global
+        ordersData = dataArray;
 
-                    let viewBtn = `<button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="openViewDetail(${index})"><i class="fas fa-eye"></i> ดู</button>`;
-                    let adminBtns = '';
-                    
-                    if(isAdminMode) {
-                        adminBtns = `
-                            <button class="btn btn-success btn-sm rounded-circle" onclick="approveOrder(${realRow})"><i class="fas fa-check"></i></button>
-                            <button class="btn btn-warning btn-sm rounded-circle" onclick="openEdit(${index})"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-danger btn-sm rounded-circle" onclick="delOrder(${realRow})"><i class="fas fa-trash"></i></button>
-                        `;
-                    }
+        // สร้าง fragment เพื่อ performance
+        const frag = document.createDocumentFragment();
+        let totalOrders = dataArray.length;
+        let totalRevenue = 0;
 
-                    html += `<tr>
-                        <td data-label="วันที่">${row[0]}</td>
-                        <td data-label="ชื่อ">${row[4]}</td>
-                        <td data-label="สินค้า">${row[1]}</td>
-                        <td class="mobile-hide" data-label="Size">${row[2]}</td>
-                        <td class="mobile-hide" data-label="จำนวน">${row[3]}</td>
-                        <td data-label="ยอดรวม">${row[8]}</td>
-                        <td data-label="สถานะ"><span class="status-badge ${statusBadge}">${status}</span></td>
-                        <td data-label="จัดการ">${viewBtn} ${adminBtns}</td>
-                    </tr>`;
+        dataArray.forEach((item, index) => {
+            // item คาดว่าเป็น { data: [...], row: <number> } ตามรูปแบบเดิม
+            const row = item.data || [];
+            const realRow = item.row;
+
+            // ปลอดภัย: sanitize ค่าทุกตัวก่อนแสดง
+            const date = escapeHTML(row[0] || '-');
+            const product = escapeHTML(row[1] || '-');
+            const size = escapeHTML(row[2] || '-');
+            const qty = escapeHTML(row[3] || '-');
+            const custName = escapeHTML(row[4] || '-');
+            const phone = escapeHTML(row[5] || '-');
+            const delivery = escapeHTML(row[6] || '-');
+            const address = escapeHTML(row[7] || '-');
+            const totalRaw = (row[8] || '').toString();
+            const totalText = escapeHTML(totalRaw || '0');
+            const statusRaw = row[10] || 'รอตรวจสอบ';
+            const status = escapeHTML(statusRaw);
+
+            // สกัดเป็นตัวเลขสำหรับคำนวณรายได้ (ลบตัวอักษรอื่น ๆ)
+            const priceNum = parseInt(String(totalRaw).replace(/[^\d]/g, ''), 10) || 0;
+            totalRevenue += priceNum;
+
+            // สร้างแถวด้วย DOM API
+            const tr = document.createElement('tr');
+
+            const tdDate = document.createElement('td');
+            tdDate.dataset.label = 'วันที่';
+            tdDate.textContent = date;
+            tr.appendChild(tdDate);
+
+            const tdName = document.createElement('td');
+            tdName.dataset.label = 'ชื่อ';
+            tdName.textContent = custName;
+            tr.appendChild(tdName);
+
+            const tdProd = document.createElement('td');
+            tdProd.dataset.label = 'สินค้า';
+            tdProd.textContent = product;
+            tr.appendChild(tdProd);
+
+            const tdSize = document.createElement('td');
+            tdSize.className = 'mobile-hide';
+            tdSize.dataset.label = 'Size';
+            tdSize.textContent = size;
+            tr.appendChild(tdSize);
+
+            const tdQty = document.createElement('td');
+            tdQty.className = 'mobile-hide';
+            tdQty.dataset.label = 'จำนวน';
+            tdQty.textContent = qty;
+            tr.appendChild(tdQty);
+
+            const tdTotal = document.createElement('td');
+            tdTotal.dataset.label = 'ยอดรวม';
+            tdTotal.textContent = totalText;
+            tr.appendChild(tdTotal);
+
+            const tdStatus = document.createElement('td');
+            tdStatus.dataset.label = 'สถานะ';
+            const spanStatus = document.createElement('span');
+            spanStatus.className = 'status-badge ' + (String(statusRaw).includes('อนุมัติ') ? 'status-done' : 'status-wait');
+            spanStatus.textContent = status;
+            tdStatus.appendChild(spanStatus);
+            tr.appendChild(tdStatus);
+
+            const tdAction = document.createElement('td');
+            tdAction.dataset.label = 'จัดการ';
+
+            // ปุ่มดูรายละเอียด (ทุกคนเห็นได้)
+            const btnView = document.createElement('button');
+            btnView.className = 'btn btn-outline-secondary btn-sm rounded-pill me-2';
+            btnView.type = 'button';
+            btnView.innerHTML = '<i class="fas fa-eye"></i> ดู';
+            btnView.addEventListener('click', () => openViewDetail(index));
+            tdAction.appendChild(btnView);
+
+            // ปุ่มเฉพาะ admin
+            if (isAdminMode) {
+                const btnApprove = document.createElement('button');
+                btnApprove.className = 'btn btn-success btn-sm rounded-circle me-1';
+                btnApprove.type = 'button';
+                btnApprove.title = 'อนุมัติ';
+                btnApprove.innerHTML = '<i class="fas fa-check"></i>';
+                btnApprove.addEventListener('click', () => {
+                    if (realRow !== undefined && realRow !== null) approveOrder(realRow);
+                    else Swal.fire('ไม่สามารถอนุมัติได้', '', 'error');
                 });
+                tdAction.appendChild(btnApprove);
 
-                document.getElementById('dataTableBody').innerHTML = html;
+                const btnEdit = document.createElement('button');
+                btnEdit.className = 'btn btn-warning btn-sm rounded-circle me-1';
+                btnEdit.type = 'button';
+                btnEdit.title = 'แก้ไข';
+                btnEdit.innerHTML = '<i class="fas fa-edit"></i>';
+                btnEdit.addEventListener('click', () => openEdit(index));
+                tdAction.appendChild(btnEdit);
 
-                if(isAdminMode) {
-                    document.getElementById('adminDashboard').style.display = 'flex';
-                    document.getElementById('adminTotalOrders').innerText = totalOrders + ' รายการ';
-                    document.getElementById('adminTotalRevenue').innerText = totalRevenue.toLocaleString() + ' ฿';
-                }
-            });
+                const btnDel = document.createElement('button');
+                btnDel.className = 'btn btn-danger btn-sm rounded-circle';
+                btnDel.type = 'button';
+                btnDel.title = 'ลบ';
+                btnDel.innerHTML = '<i class="fas fa-trash"></i>';
+                btnDel.addEventListener('click', () => {
+                    if (realRow !== undefined && realRow !== null) delOrder(realRow);
+                    else Swal.fire('ไม่สามารถลบได้', '', 'error');
+                });
+                tdAction.appendChild(btnDel);
+            }
+
+            tr.appendChild(tdAction);
+            frag.appendChild(tr);
+        });
+
+        // วางผลลัพธ์ลงในตาราง
+        tbody.innerHTML = '';
+        tbody.appendChild(frag);
+
+        // อัปเดต dashboard ถ้าเป็น admin
+        if (isAdminMode) {
+            const adminDashboard = document.getElementById('adminDashboard');
+            if (adminDashboard) {
+                adminDashboard.style.display = 'flex';
+            }
+            const totalOrdersEl = document.getElementById('adminTotalOrders');
+            if (totalOrdersEl) totalOrdersEl.innerText = totalOrders + ' รายการ';
+            const totalRevenueEl = document.getElementById('adminTotalRevenue');
+            if (totalRevenueEl) totalRevenueEl.innerText = totalRevenue.toLocaleString() + ' ฿';
+        }
+    })
+    .catch(err => {
+        console.error('loadOrders error:', err);
+        const tbodyErr = document.getElementById('dataTableBody');
+        if (tbodyErr) tbodyErr.innerHTML = '<tr><td colspan="8">โหลดข้อมูลไม่สำเร็จ</td></tr>';
+        Swal.fire('Error', 'โหลดข้อมูลไม่สำเร็จ', 'error');
+    });
+}
         }
 
         function openViewDetail(index) {
-            let row = ordersData[index].data;
-            let status = row[10] || 'รอตรวจสอบ';
-            let html = `
-                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> <span class="detail-value">${row[0]}</span></div>
-                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> <span class="detail-value">${row[4]}</span></div>
-                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> <span class="detail-value">${row[5]}</span></div>
-                <div class="detail-row"><span class="detail-label">สินค้า:</span> <span class="detail-value">${row[1]}</span></div>
-                <div class="detail-row"><span class="detail-label">Size:</span> <span class="detail-value">${row[2]}</span></div>
-                <div class="detail-row"><span class="detail-label">จำนวน:</span> <span class="detail-value">${row[3]} ชิ้น</span></div>
-                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> <span class="detail-value">${row[6]}</span></div>
-                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <span class="detail-value" style="max-width:60%;">${row[7] || '-'}</span></div>
-                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> <span class="detail-value fw-bold text-success">${row[8]} บาท</span></div>
+            const row = ordersData[index].data;
+            const status = escapeHTML(row[10] || 'รอตรวจสอบ');
+            const detailHtml = `
+                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> <span class="detail-value">${escapeHTML(row[0])}</span></div>
+                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> <span class="detail-value">${escapeHTML(row[4])}</span></div>
+                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> <span class="detail-value">${escapeHTML(row[5])}</span></div>
+                <div class="detail-row"><span class="detail-label">สินค้า:</span> <span class="detail-value">${escapeHTML(row[1])}</span></div>
+                <div class="detail-row"><span class="detail-label">Size:</span> <span class="detail-value">${escapeHTML(row[2])}</span></div>
+                <div class="detail-row"><span class="detail-label">จำนวน:</span> <span class="detail-value">${escapeHTML(row[3])} ชิ้น</span></div>
+                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> <span class="detail-value">${escapeHTML(row[6])}</span></div>
+                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <span class="detail-value" style="max-width:60%;">${escapeHTML(row[7] || '-')}</span></div>
+                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> <span class="detail-value fw-bold text-success">${escapeHTML(row[8])} บาท</span></div>
                 <div class="detail-row border-0"><span class="detail-label">สถานะ:</span> <span class="detail-value"><strong>${status}</strong></span></div>
             `;
-            document.getElementById('viewDetailBody').innerHTML = html;
+            document.getElementById('viewDetailBody').innerHTML = detailHtml;
             viewDetailModal.show();
         }
 
