@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PSL 20th Anniversary Collection</title>
+    
+    <meta name="description" content="สั่งจองเสื้อและของที่ระลึกงานฟุตบอล PSL 20th Anniversary">
+    <meta property="og:title" content="PSL 20th Anniversary Collection">
+    <meta property="og:image" content="images/logo.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/NGx45YYr/3_(1).png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            /* Minimalist Cream & Brown Theme */
             --bg-cream: #FDFBF7;
-            --primary-brown: #8D6E63;
+            --primary-brown: #f78011;
             --dark-brown: #5D4037;
-            --light-brown: #D7CCC8;
             --soft-white: #ffffff;
             --text-color: #4E342E;
-            --success-green: #2e7d32;
-            --pending-yellow: #f57f17;
+            --reserve-color: #f71111;
         }
 
         body {
@@ -26,371 +30,168 @@
             background-color: var(--bg-cream);
             color: var(--text-color);
             padding-bottom: 80px;
+            overflow-x: hidden;
         }
 
-        /* Navbar */
-        .navbar {
-            background-color: rgba(253, 251, 247, 0.98);
-            box-shadow: 0 2px 15px rgba(141, 110, 99, 0.1);
-            backdrop-filter: blur(8px);
-        }
-        .navbar-brand {
-            font-weight: 600;
-            color: var(--dark-brown) !important;
-            font-size: 1.3rem;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-        }
-        .custom-navbar-icon {
-            height: 1.5rem;
-            width: auto;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-
-        /* Slider */
-        .carousel-item {
-            height: 50vh; /* Mobile height */
-            min-height: 250px;
-            background-color: #f4f4f4;
-        }
-        @media (min-width: 768px) {
-            .carousel-item { height: 75vh; /* Desktop height */ }
-        }
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* Status Button Section */
-        .status-check-section {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .btn-status-check {
-            background-color: white;
-            color: var(--primary-brown);
-            border: 2px solid var(--primary-brown);
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        .btn-status-check:hover {
-            background-color: var(--primary-brown);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(141, 110, 99, 0.2);
-        }
-
-        /* Product Cards */
-        .product-card {
-            background: var(--soft-white);
-            border: none;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(141, 110, 99, 0.08);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .product-card:hover { 
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(141, 110, 99, 0.15);
-        }
+        /* Navbar & General UI */
+        .navbar { background-color: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(141, 110, 99, 0.08); }
+        .navbar-brand { font-weight: 600; color: var(--dark-brown) !important; font-size: 1.35rem; display: flex; align-items: center; }
+        .custom-navbar-icon { height: 1.6rem; margin-right: 10px; }
         
-        .product-img-box {
-            height: 280px;
-            width: 100%;
-            overflow: hidden;
-            background-color: #fafafa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .product-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .card-body {
-            padding: 25px;
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        
-        .btn-custom {
-            background-color: var(--primary-brown);
-            color: white;
-            border-radius: 50px;
-            padding: 12px 0;
-            border: none;
-            width: 100%;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(141, 110, 99, 0.2);
-        }
-        .btn-custom:hover {
-            background-color: var(--dark-brown);
-            color: white;
-            transform: scale(1.02);
-        }
+        .product-card { background: var(--soft-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(141, 110, 99, 0.15); }
+        .product-img-box { height: 300px; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fafafa; }
+        .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .product-img-box img { transform: scale(1.05); }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
 
-        /* --- New Optimized Size Chart Styles --- */
-        .nav-pills .nav-link {
-            color: var(--text-color);
-            background-color: #f0f0f0;
-            border-radius: 50px;
-            margin: 0 5px;
-            padding: 8px 20px;
-            font-weight: 500;
+        .btn-custom { background: linear-gradient(45deg, #8D6E63, #6D4C41); color: white; border-radius: 50px; border: none; transition: 0.3s; }
+        .btn-custom:hover { background: linear-gradient(45deg, #6D4C41, #5D4037); transform: scale(1.02); }
+        .btn-outline-custom { background: transparent; color: var(--primary-brown); border: 2px solid var(--primary-brown); border-radius: 50px; transition: 0.3s; font-weight: 600; }
+        .btn-outline-custom:hover { background: var(--primary-brown); color: white; }
+
+        .footer-contact { background: white; padding: 60px 20px; margin-top: 80px; text-align: center; border-top: 1px solid #eee; }
+        .btn-link-custom { border: 1px solid #ddd; padding: 10px 25px; border-radius: 30px; margin: 5px; display: inline-block; color: #666; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .btn-link-custom:hover { border-color: var(--primary-brown); color: var(--primary-brown); }
+
+        /* Table & Tabs (Size Chart) */
+        .nav-pills .nav-link { color: var(--text-color); background-color: #f1f1f1; border-radius: 50px; margin: 0 5px; padding: 10px 25px; font-weight: 500; }
+        .nav-pills .nav-link.active { background-color: var(--primary-brown); color: white; }
+        .table-size th { background-color: #EFEBE9; color: var(--dark-brown); white-space: nowrap; padding: 15px; }
+
+        /* Admin Dashboard Styles */
+        .stat-card {
+            border-radius: 15px; padding: 20px; color: white; position: relative; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); height: 100%;
         }
-        .nav-pills .nav-link.active {
-            background-color: var(--primary-brown);
-            color: white;
-        }
+        .bg-grad-primary { background: linear-gradient(135deg, #8D6E63, #5D4037); }
+        .bg-grad-success { background: linear-gradient(135deg, #66BB6A, #2E7D32); }
+        .bg-grad-info { background: linear-gradient(135deg, #4FC3F7, #0288D1); }
+        .bg-grad-warning { background: linear-gradient(135deg, #FFCA28, #F57C00); }
         
-        /* ตาราง Size ในมือถือ */
-        .table-size {
-            margin-bottom: 0;
-        }
-        .table-size th {
-            background-color: var(--light-brown);
-            color: var(--dark-brown);
-            font-weight: 600;
-            border: none;
-            white-space: nowrap; /* ห้ามตัดบรรทัด */
-            padding: 10px 5px;   /* ลดระยะห่าง */
-            font-size: 0.9rem;
-        }
-        .table-size td {
-            border-bottom: 1px solid #eee;
-            color: #666;
-            padding: 8px 5px;
-            font-size: 0.9rem;
-        }
-        .table-size tr:last-child td { border-bottom: none; }
-        .table-responsive {
-            border-radius: 12px;
-            border: 1px solid #eee;
-            overflow-x: auto; /* เลื่อนแนวนอนถ้าจอเล็กมาก */
-        }
-
-        /* Footer */
-        .footer-contact {
-            background-color: white;
-            padding: 50px 20px;
-            border-top: 1px solid #eee;
-            margin-top: 60px;
-            text-align: center;
-        }
-        .action-buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn-link-custom {
-            font-size: 0.9rem;
-            color: #888;
-            text-decoration: none;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            padding: 8px 20px;
-            border-radius: 30px;
-            transition: all 0.2s;
-            background: white;
-        }
-        .btn-link-custom:hover {
-            background-color: var(--primary-brown);
-            color: white;
-            border-color: var(--primary-brown);
-        }
-
-        /* Modal Elements */
-        .modal-content { border-radius: 16px; border: none; }
-        .modal-header { background-color: var(--bg-cream); color: var(--dark-brown); border-bottom: 1px solid var(--light-brown); border-radius: 16px 16px 0 0; }
-        
-        .bank-box {
-            background-color: #EFEBE9;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 15px;
-            text-align: center;
-            border: 2px dashed var(--primary-brown);
-        }
-        .form-control, .form-select {
-            border-radius: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-brown);
-            box-shadow: 0 0 0 0.25rem rgba(141, 110, 99, 0.2);
-        }
-        .success-box {
-            background-color: #FFF8E1;
-            border: 1px solid #FFECB3;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        /* Dashboard Stats */
-        .dashboard-card {
-            border-radius: 16px; padding: 25px; color: white; margin-bottom: 20px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1); position: relative; overflow: hidden;
-        }
-        .card-orders { background: linear-gradient(135deg, #8D6E63, #5D4037); }
-        .card-revenue { background: linear-gradient(135deg, #66BB6A, #2E7D32); }
-        .dashboard-card i { position: absolute; right: 15px; bottom: 15px; font-size: 3rem; opacity: 0.2; }
+        .stat-icon { position: absolute; right: 15px; bottom: 15px; font-size: 3rem; opacity: 0.2; }
+        .table-admin { font-size: 0.9rem; }
+        .inv-table th { background-color: #f8f9fa; color: #555; }
+        .btn-action { width: 32px; height: 32px; padding: 0; line-height: 32px; border-radius: 50%; text-align: center; margin: 0 2px; border:none; color: white;}
 
         /* Responsive Table */
-        .table-hover tbody tr:hover { background-color: #f9f5f0; }
-        
-        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; display: inline-block; }
-        .status-wait { background-color: #FFF3E0; color: #EF6C00; border: 1px solid #FFE0B2; }
-        .status-done { background-color: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9; }
-
-        /* Admin Table Mobile View */
         @media (max-width: 768px) {
-            #dataTableBody tr { background: white; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid #eee; padding: 15px; display: block; }
-            #dataTableBody td { border: none; position: relative; padding: 5px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed #eee; }
-            #dataTableBody td:last-child { border-bottom: none; justify-content: flex-end; gap: 10px; margin-top: 10px; }
-            #dataTableBody td:before { content: attr(data-label); font-weight: 600; color: var(--dark-brown); font-size: 0.9rem; }
-            #dataTableSection thead { display: none; }
             .mobile-hide { display: none !important; }
+            .table-admin thead { display: none; }
+            .table-admin tr { display: block; margin-bottom: 15px; border: 1px solid #eee; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+            .table-admin td { display: flex; justify-content: space-between; border: none; padding: 5px 0; }
+            .table-admin td:before { content: attr(data-label); font-weight: bold; color: var(--dark-brown); }
         }
+        
+        #scrollTopBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99; border: none; background: var(--primary-brown); color: white; padding: 15px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        .detail-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #eee; }
-        .detail-label { font-weight: 600; color: var(--dark-brown); }
-        .detail-value { text-align: right; color: #555; }
+        /* === FIX: บังคับให้หน้าต่าง Edit อยู่บนสุดเสมอ === */
+        #editModal {
+            z-index: 10000 !important; /* ค่าปกติคือ 1055 เราตั้งให้สูงกว่า */
+        }
+        /* ถ้าเปิดซ้อนกัน backdrop (ฉากหลังมืดๆ) อันที่ 2 ต้องสูงกว่าอันแรก */
+        .modal-backdrop:nth-of-type(2) {
+            z-index: 9999 !important;
+        }
     </style>
 </head>
 <body>
 
     <nav class="navbar fixed-top">
         <div class="container">
-            <span class="navbar-brand mx-auto">
-                <img src="images/3.png" alt="Logo" class="custom-navbar-icon"> PSL 20th Anniversary
+            <span class="navbar-brand mx-auto" data-aos="fade-down">
+                <img src="images/logo.png" alt="Logo" class="custom-navbar-icon" onerror="this.src='https://i.postimg.cc/NGx45YYr/3_(1).png'"> 
+                PSL 20th Anniversary
             </span>
         </div>
     </nav>
 
-    <div id="mainCarousel" class="carousel slide mt-5 pt-3" data-bs-ride="carousel" data-bs-interval="3000">
-      <div class="carousel-indicators">
+    <div id="mainCarousel" class="carousel slide mt-5 pt-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
             <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
-	    <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
-
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active"><img src="images/11.jpg" alt="Slide 1" fetchpriority="high"></div>
-            <div class="carousel-item"><img src="images/12.jpg" loading="lazy" alt="Slide 2"></div>
-            <div class="carousel-item"><img src="images/13.jpg" loading="lazy" alt="Slide 3"></div>
-            <div class="carousel-item"><img src="images/14.png" loading="lazy" alt="Slide 4"></div>
-            <div class="carousel-item"><img src="images/15.jpg" loading="lazy" alt="Slide 5"></div>
-            <div class="carousel-item"><img src="images/16.jpg" loading="lazy" alt="Slide 6"></div>
-	     <div class="carousel-item"><img src="images/17.jpg" loading="lazy" alt="Slide 7"></div>
+            <div class="carousel-item active" style="height: 60vh;"><img src="images/11.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 1"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/12.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 2"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/13.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 3"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/14.png" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 4" onerror="this.src='https://via.placeholder.com/1920x1080?text=Image+14'"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/15.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 5" onerror="this.src='https://via.placeholder.com/1920x1080?text=Image+15'"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/16.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 6" onerror="this.src='https://via.placeholder.com/1920x1080?text=Image+16'"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/17.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 7" onerror="this.src='https://via.placeholder.com/1920x1080?text=Image+17'"></div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+
+    <div class="container text-center mt-5" data-aos="fade-up">
+        <button class="btn btn-outline-custom px-4 py-2" onclick="openPublicView()">
+            <i class="fas fa-search me-2"></i> ตรวจสอบสถานะคำสั่งซื้อ
         </button>
     </div>
 
-    <div class="status-check-section">
-        <button class="btn btn-status-check" onclick="openPublicView()">
-            <i class="fas fa-list-alt me-2"></i> ตรวจสอบสถานะคำสั่งซื้อของคุณ
-        </button>
-    </div>
-
-    <div class="container py-4">
-        <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-brown);">COLLECTION PRODUCT</h2>
+    <div class="container py-5">
+        <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-brown);" data-aos="fade-up">COLLECTION PRODUCT</h2>
         <div class="row g-4 justify-content-center">
             
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="images/21.jpg" loading="lazy" alt="เสื้อ PSL">
-                    </div>
+                    <div class="product-img-box"><img src="images/21.jpg" alt="เสื้อ PSL" onerror="this.src='https://via.placeholder.com/600x600?text=No+Image'"></div>
                     <div class="card-body">
-                        <h4 class="fw-bold">เสื้อที่ระลึก PSL</h4>
-                        <p class="text-brown fs-3 fw-bold mb-3">499.-</p>
-                        <button class="btn btn-custom" onclick="openOrder('เสื้อที่ระลึก', 499, true)">สั่งซื้อสินค้า</button>
+                        <div><h4 class="fw-bold">เสื้อที่ระลึก PSL</h4><p class="text-brown fs-3 fw-bold mb-3">499.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('เสื้อที่ระลึก', 499, true, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('เสื้อที่ระลึก', 499, true, 'reserve')">จอง</button></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="images/22.jpg" loading="lazy" alt="แก้วน้ำ">
-                    </div>
+                    <div class="product-img-box"><img src="images/22.jpg" alt="แก้วน้ำ" onerror="this.src='https://via.placeholder.com/600x600?text=No+Image'"></div>
                     <div class="card-body">
-                        <h4 class="fw-bold">แก้วเก็บความเย็น</h4>
-                        <p class="text-brown fs-3 fw-bold mb-3">299.-</p>
-                        <button class="btn btn-custom" onclick="openOrder('แก้วเก็บความเย็น', 299, false)">สั่งซื้อสินค้า</button>
+                        <div><h4 class="fw-bold">แก้วเก็บความเย็น</h4><p class="text-brown fs-3 fw-bold mb-3">299.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('แก้วเก็บความเย็น', 299, false, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('แก้วเก็บความเย็น', 299, false, 'reserve')">จอง</button></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <div class="product-card">
-                    <div class="product-img-box">
-                        <img src="images/23.JPG" loading="lazy" alt="ชุดคอมโบ">
-                    </div>
+                    <div class="product-img-box"><img src="images/23.jpg" alt="ชุดคอมโบ" onerror="this.src='https://via.placeholder.com/600x600?text=No+Image'"></div>
                     <div class="card-body">
-                        <h4 class="fw-bold">ชุดคอมโบ (เสื้อ+แก้ว)</h4>
-                        <p class="text-brown fs-3 fw-bold mb-3">699.-</p>
-                        <button class="btn btn-custom" onclick="openOrder('ชุดคอมโบ', 699, true)">สั่งซื้อสินค้า</button>
+                        <div><h4 class="fw-bold">ชุดคอมโบ (เสื้อ+แก้ว)</h4><p class="text-brown fs-3 fw-bold mb-3">699.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('ชุดคอมโบ', 699, true, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('ชุดคอมโบ', 699, true, 'reserve')">จอง</button></div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <div class="container pb-5">
-        <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm">
-            <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตาราง Size (Size Chart)</h3>
-            <p class="text-center text-muted mb-4">เลือก Size ที่เหมาะสมกับคุณ</p>
-
-            <ul class="nav nav-pills justify-content-center mb-3" id="sizeTab" role="tablist">
-                <li class="nav-item">
-                    <button class="nav-link active" id="adult-tab" data-bs-toggle="pill" data-bs-target="#adult" type="button">ผู้ใหญ่ (Adult)</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" id="junior-tab" data-bs-toggle="pill" data-bs-target="#junior" type="button">เด็ก (Junior)</button>
-                </li>
+    <div class="container pb-5" data-aos="fade-up">
+        <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm mt-5">
+            <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตาราง Size</h3>
+            <ul class="nav nav-pills justify-content-center mb-4" id="sizeTab">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#adult">ผู้ใหญ่</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#junior">เด็ก</button></li>
             </ul>
-
-            <div class="tab-content" id="sizeTabContent">
-                <div class="tab-pane fade show active" id="adult" role="tabpanel">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="adult">
                     <div class="table-responsive">
-                        <table class="table text-center table-size">
-                            <thead>
-                                <tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr>
-                            </thead>
+                        <table class="table text-center table-size mb-0">
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>SS</td><td>36"</td><td>26"</td></tr>
                                 <tr><td>S</td><td>38"</td><td>27"</td></tr>
@@ -407,12 +208,10 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="junior" role="tabpanel">
+                <div class="tab-pane fade" id="junior">
                     <div class="table-responsive">
-                        <table class="table text-center table-size">
-                            <thead>
-                                <tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr>
-                            </thead>
+                        <table class="table text-center table-size mb-0">
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
                             <tbody>
                                 <tr><td>2S</td><td>24"</td><td>18"</td></tr>
                                 <tr><td>S</td><td>26"</td><td>19"</td></tr>
@@ -429,105 +228,102 @@
     </div>
 
     <div class="footer-contact">
-        <h4 class="fw-bold mb-4" style="color: var(--dark-brown);">สอบถามข้อมูลเพิ่มเติม</h4>
+        <h4 class="fw-bold mb-4" style="color: var(--dark-brown);">ติดต่อสอบถาม</h4>
         <div class="mb-4">
-            <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> ฟิล์ม: <a href="tel:0953205156" class="fw-bold text-dark text-decoration-none">095-320-5156</a></span>
-            <span class="d-inline-block mx-3 mb-2"><i class="fas fa-phone-alt text-brown"></i> กัปตัน: <a href="tel:0969808374" class="fw-bold text-dark text-decoration-none">096-980-8374</a></span>
+            <a href="tel:0953205156" class="btn-link-custom"><i class="fas fa-phone-alt"></i> ฟิล์ม: 095-320-5156</a>
+            <a href="tel:0969808374" class="btn-link-custom"><i class="fas fa-phone-alt"></i> กัปตัน: 096-980-8374</a>
         </div>
-        <div class="action-buttons">
-            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ (Admin)</span>
+        <div>
+            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> รายการสั่งซื้อ</span>
+            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ</span>
         </div>
+        <p class="mt-4 text-muted small">&copy; 2024 PSL 20th Anniversary.</p>
     </div>
+
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
 
     <div class="modal fade" id="orderModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="modalTitle">รายละเอียดการสั่งซื้อ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
+                <div class="modal-header"><h5 class="modal-title fw-bold" id="modalTitle">รายละเอียด</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
                 <div class="modal-body">
                     <form id="orderForm">
-                        <input type="hidden" id="p_name">
-                        <input type="hidden" id="p_price">
-
+                        <input type="hidden" id="p_name"><input type="hidden" id="p_price"><input type="hidden" id="p_type">
+                        
+                        <div class="alert alert-info" id="reserveAlert" style="display:none;"><i class="fas fa-info-circle"></i> คุณกำลังอยู่ในโหมด <strong>"จองสินค้า"</strong> (ยังไม่ต้องชำระเงิน)</div>
+                        
                         <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <label class="small text-muted">ชื่อ-นามสกุล</label>
-                                <input type="text" id="c_name" class="form-control" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="small text-muted">เบอร์โทรศัพท์ (10 หลัก)</label>
-                                <input type="tel" id="c_phone" class="form-control" maxlength="10" required>
-                            </div>
+                            <div class="col-md-6"><label class="small text-muted">ชื่อ-นามสกุล</label><input type="text" id="c_name" class="form-control" required></div>
+                            <div class="col-md-6"><label class="small text-muted">เบอร์โทรศัพท์</label><input type="tel" id="c_phone" class="form-control" maxlength="10" required></div>
                         </div>
-
                         <div class="mb-3">
-                            <label class="fw-bold mb-2">จำนวนสินค้า</label>
-                            <input type="number" id="c_qty" class="form-control w-25 mb-3" value="1" min="1" onchange="updateSizeInputs()">
+                            <label class="fw-bold">จำนวน</label><input type="number" id="c_qty" class="form-control w-25 mb-2" value="1" min="1" onchange="updateSizeInputs()">
                             <div id="dynamicSizeContainer" class="p-3 bg-light rounded border"></div>
                         </div>
-
-                        <div class="mb-4 p-3 bg-white rounded border">
-                            <label class="fw-bold mb-2">การจัดส่ง</label>
+                        <div class="mb-4 p-3 border rounded">
+                            <label class="fw-bold">การจัดส่ง</label>
                             <div>
-                                <input type="radio" name="delivery" id="del_pickup" value="pickup" checked onchange="toggleAddr()"> <label for="del_pickup">รับเอง (ฟรี)</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" name="delivery" id="del_ship" value="ship" onchange="toggleAddr()"> <label for="del_ship">จัดส่ง (+30 บาท)</label>
+                                <input type="radio" name="delivery" id="del_pickup" value="pickup" checked onchange="toggleAddr()"> รับเอง (ฟรี)
+                                <input type="radio" name="delivery" id="del_ship" value="ship" onchange="toggleAddr()" class="ms-3"> จัดส่ง (+30บ.)
                             </div>
-                            <div class="mt-2" id="addrBox" style="display:none;">
-                                <textarea id="c_addr" class="form-control" rows="2" placeholder="กรุณาระบุที่อยู่จัดส่งให้ชัดเจน..."></textarea>
-                            </div>
+                            <div class="mt-2" id="addrBox" style="display:none;"><textarea id="c_addr" class="form-control" rows="2" placeholder="ที่อยู่จัดส่ง..."></textarea></div>
                         </div>
-
-                        <div class="p-3 mb-3 bg-light rounded text-center border">
-                            <h4 class="mb-3">ยอดชำระรวม: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
-                            <div class="bg-white p-2 rounded d-inline-block border mb-2">
-                                <small>ธนาคารกรุงไทย</small><br>
-                                <strong>นายณรรถภพ สราญรมย์</strong><br>
-                                <span class="fs-5 fw-bold text-primary">679-3-95520-9</span>
+                        
+                        <div class="text-center p-3 bg-light rounded border">
+                            <h4>ยอดชำระ: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
+                            
+                            <div id="paymentSection">
+                                <hr>
+                                <div class="bg-white p-3 border rounded d-inline-block mt-2 shadow-sm">
+                                    <h6 class="text-secondary">ธนาคารกรุงไทย</h6>
+                                    <h5 class="fw-bold">นายณรรถภพ สราญรมย์</h5>
+                                    <h4 class="text-primary fw-bold my-2">679-3-95520-9</h4>
+                                    <img src="images/qr.jpg" alt="QR Code" style="width: 280px; border: 1px solid #ddd; border-radius: 8px;" onerror="this.src='https://via.placeholder.com/180x180?text=Scan+QR+Code'">
+                                </div>
+                                <div class="mt-3">
+                                    <label class="text-danger small fw-bold">* แนบสลิปการโอนเงิน</label>
+                                    <input type="file" id="slipFile" class="form-control mt-1" accept="image/*">
+                                </div>
                             </div>
-                            <br>
-                            <img src="images/88.jpg" alt="QR Code" style="width: 150px; border-radius: 8px; border: 1px solid #ddd;">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="text-danger fw-bold small">* แนบสลิปการโอนเงินเพื่อยืนยัน</label>
-                            <input type="file" id="slipFile" class="form-control" accept="image/*" required>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer border-0 p-3">
-                    <div class="row w-100 m-0 g-2">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-secondary w-100 rounded-pill py-2" data-bs-dismiss="modal">ยกเลิก</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-custom w-100 py-2" onclick="validateAndSubmit()">ยืนยัน</button>
-                        </div>
+                <div class="modal-footer"><button class="btn btn-secondary w-100" data-bs-dismiss="modal">ยกเลิก</button><button class="btn btn-custom w-100" id="btnConfirm" onclick="validateAndSubmit()">ยืนยัน</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-edit"></i> แก้ไขข้อมูลลูกค้า</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_row_id">
+                    <div class="mb-3">
+                        <label class="form-label small">ชื่อ-นามสกุล</label>
+                        <input type="text" id="edit_name" class="form-control">
                     </div>
+                    <div class="mb-3">
+                        <label class="form-label small">เบอร์โทรศัพท์</label>
+                        <input type="text" id="edit_phone" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label small">ที่อยู่</label>
+                        <textarea id="edit_addr" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button class="btn btn-primary" onclick="saveEdit()">บันทึกการแก้ไข</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="successModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-center border-0">
-                <div class="modal-body p-5">
-                    <i class="fas fa-check-circle fa-5x text-success mb-3"></i>
-                    <h2 class="fw-bold mb-2">ซื้อสำเร็จ!</h2>
-                    <h5 class="mb-4 text-muted">ขอบคุณสำหรับคำสั่งซื้อของคุณ</h5>
-                    <div class="bg-warning bg-opacity-25 p-3 rounded">
-                        <h5 class="fw-bold text-brown mb-2"><i class="fa-solid fa-futbol"></i> เชิญชวนมาเตะฟุตบอล</h5>
-                        <p class="mb-1">วันที่ 30 ธ.ค. 68 เวลา 16:00 น. เป็นต้นไป</p>
-                        <p class="mb-0 fw-bold">เชิญชวนพี่น้องๆ มาร่วมเตะฟุตบอลกันนะครับ!</p>
-                    </div>
-                    <button class="btn btn-secondary w-100 mt-4" data-bs-dismiss="modal">ปิดหน้าต่าง</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="modal fade" id="successModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content text-center p-5"><i class="fas fa-check-circle fa-5x text-success mb-3"></i><h3>สำเร็จ!</h3><p>บันทึกข้อมูลแล้ว</p><button class="btn btn-secondary mt-3" data-bs-dismiss="modal">ปิด</button></div></div></div>
 
     <div class="modal fade" id="dataModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -538,50 +334,81 @@
                 </div>
                 <div class="modal-body bg-light">
                     <div id="adminLoginSection" class="text-center py-5" style="display:none;">
-                        <h4 class="mb-3">Admin Login</h4>
-                        <input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน">
-                        <button class="btn btn-dark" onclick="checkAdmin()">เข้าสู่ระบบ</button>
+                        <i class="fas fa-lock fa-3x mb-3 text-secondary"></i>
+                        <input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน Admin">
+                        <button class="btn btn-dark w-50 rounded-pill" onclick="checkAdmin()">Login</button>
                     </div>
                     
                     <div id="dataTableSection" style="display:none;">
                         
-                        <div id="adminDashboard" class="row mb-4" style="display:none;">
-                            <div class="col-md-6">
-                                <div class="dashboard-card card-orders">
-                                    <h5 class="mb-1 text-white-50">คำสั่งซื้อทั้งหมด</h5>
-                                    <h2 class="mb-0 fw-bold" id="adminTotalOrders">0</h2>
-                                    <i class="fas fa-shopping-bag"></i>
+                        <div id="adminDashboard" style="display:none;">
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-3">
+                                    <div class="stat-card bg-grad-primary">
+                                        <h5>คำสั่งซื้อทั้งหมด</h5>
+                                        <h2 class="fw-bold" id="statTotalOrders">0</h2>
+                                        <i class="fas fa-shopping-bag stat-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card bg-grad-success">
+                                        <h5>รายได้ (จ่ายแล้ว)</h5>
+                                        <h2 class="fw-bold" id="statPaidRevenue">0</h2>
+                                        <i class="fas fa-coins stat-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card bg-grad-info">
+                                        <h5>รอชำระ (จอง)</h5>
+                                        <h2 class="fw-bold" id="statUnpaidRevenue">0</h2>
+                                        <i class="fas fa-clock stat-icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="stat-card bg-grad-warning">
+                                        <h5>ยอดรวมทั้งหมด</h5>
+                                        <h2 class="fw-bold" id="statTotalRevenue">0</h2>
+                                        <small>จ่ายแล้ว + จอง</small>
+                                        <i class="fas fa-chart-line stat-icon"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="dashboard-card card-revenue">
-                                    <h5 class="mb-1 text-white-50">รายได้รวม</h5>
-                                    <h2 class="mb-0 fw-bold" id="adminTotalRevenue">0 ฿</h2>
-                                    <i class="fas fa-coins"></i>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-8">
+                                    <div class="bg-white p-3 rounded shadow-sm h-100">
+                                        <h5 class="fw-bold mb-3 text-brown"><i class="fas fa-tshirt"></i> สรุปจำนวนเสื้อที่ต้องสั่งผลิต</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-sm text-center inv-table mb-0">
+                                                <thead><tr id="shirtSizeHeader"></tr></thead>
+                                                <tbody><tr id="shirtSizeRow"></tr></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="bg-white p-3 rounded shadow-sm h-100">
+                                        <h5 class="fw-bold mb-3 text-brown"><i class="fas fa-mug-hot"></i> สรุปจำนวนสินค้า</h5>
+                                        <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                                            <span>แก้วเก็บความเย็น</span>
+                                            <span class="fs-4 fw-bold text-success" id="totalCups">0 ใบ</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <span>เสื้อรวมทั้งหมด</span>
+                                            <span class="fs-4 fw-bold text-primary" id="totalShirts">0 ตัว</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="text-muted small">* แสดงข้อมูลล่าสุดขึ้นก่อน</span>
-                            <button class="btn btn-success btn-sm rounded-pill px-3" onclick="loadOrders()">
-                                <i class="fas fa-sync me-1"></i> รีเฟรชข้อมูล
-                            </button>
+                            <span class="text-muted small">แสดงข้อมูลล่าสุดก่อน</span>
+                            <button class="btn btn-success btn-sm rounded-pill px-3" onclick="loadOrders()"><i class="fas fa-sync me-1"></i> รีเฟรช</button>
                         </div>
-
-                        <div class="table-responsive">
-                            <table class="table table-hover align-middle mb-0 bg-white">
+                        <div class="table-responsive bg-white rounded shadow-sm">
+                            <table class="table table-hover align-middle mb-0 table-admin">
                                 <thead class="table-secondary text-center">
-                                    <tr>
-                                        <th>วันที่</th>
-                                        <th>ชื่อลูกค้า</th>
-                                        <th>สินค้า</th>
-                                        <th class="mobile-hide">Size</th>
-                                        <th class="mobile-hide">จำนวน</th>
-                                        <th>ยอดรวม</th>
-                                        <th>สถานะ</th>
-                                        <th id="actionHeader">จัดการ</th>
-                                    </tr>
+                                    <tr><th>วันที่</th><th>ลูกค้า</th><th>สินค้า</th><th class="mobile-hide">Size</th><th class="mobile-hide">จำนวน</th><th>ยอดรวม</th><th>สถานะ</th><th id="actionHeader">จัดการ</th></tr>
                                 </thead>
                                 <tbody id="dataTableBody"></tbody>
                             </table>
@@ -592,101 +419,46 @@
         </div>
     </div>
 
-    <div class="modal fade" id="viewDetailModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">🧾 รายละเอียดคำสั่งซื้อ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-4" id="viewDetailBody">
-                    </div>
-                <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">ปิด</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="editModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-warning">
-                    <h5 class="modal-title">แก้ไขข้อมูล (Admin)</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="editRow">
-                    <div class="mb-2"><label>สินค้า</label><input type="text" id="editProd" class="form-control"></div>
-                    <div class="row">
-                        <div class="col-6 mb-2"><label>Size</label><input type="text" id="editSize" class="form-control"></div>
-                        <div class="col-6 mb-2"><label>จำนวน</label><input type="number" id="editQty" class="form-control"></div>
-                    </div>
-                    <div class="mb-2"><label>ชื่อ</label><input type="text" id="editName" class="form-control"></div>
-                    <div class="mb-2"><label>เบอร์</label><input type="text" id="editPhone" class="form-control"></div>
-                    <div class="mb-2"><label>การจัดส่ง</label><input type="text" id="editDel" class="form-control"></div>
-                    <div class="mb-2"><label>ที่อยู่</label><textarea id="editAddr" class="form-control"></textarea></div>
-                    <div class="mb-2"><label>ยอดรวม</label><input type="text" id="editTotal" class="form-control"></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button class="btn btn-primary" onclick="saveEdit()">บันทึก</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwZ_Re4FhvdnJCgQax7WicsUmlNHbOO0RFsQFxqkPzUcG4dgpGdaPM_ny5la9xHvBc8xQ/exec'; 
-
+        AOS.init({ duration: 800, once: true });
+        window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (window.scrollY > 100) ? "block" : "none"; };
+        
+        // ** อย่าลืมเปลี่ยน URL ตรงนี้เป็นของ Script ตัวเอง **
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx5NshJwBL-p0IA5E0h3BjwG-jTadTzPF6q5QFFV8zqa7ZfbavfyuJte5GlSX04Hs3v/exec'; 
+        
         const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
         const successModal = new bootstrap.Modal(document.getElementById('successModal'));
         const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
         const editModal = new bootstrap.Modal(document.getElementById('editModal'));
-        const viewDetailModal = new bootstrap.Modal(document.getElementById('viewDetailModal'));
 
         let isAdminMode = false;
         let ordersData = [];
+        const sizeOptions = `<option value="-">-- เลือก Size --</option><optgroup label="ผู้ใหญ่"><option value="SS">SS (อก36)</option><option value="S">S (อก38)</option><option value="M">M (อก40)</option><option value="L">L (อก42)</option><option value="XL">XL (อก44)</option><option value="2XL">2XL (อก46)</option><option value="3XL">3XL (อก48)</option><option value="4XL">4XL (อก50)</option><option value="5XL">5XL (อก52)</option><option value="6XL">6XL (อก54)</option><option value="7XL">7XL (อก56)</option></optgroup><optgroup label="เด็ก"><option value="Kids 2S">Kids 2S (อก24)</option><option value="Kids S">Kids S (อก26)</option><option value="Kids M">Kids M (อก28)</option><option value="Kids L">Kids L (อก30)</option><option value="Kids XL">Kids XL (อก32)</option><option value="Kids 2XL">Kids 2XL (อก34)</option></optgroup>`;
 
-        // Size HTML Template
-        const sizeOptions = `
-            <option value="-">-- เลือก Size --</option>
-            <optgroup label="ผู้ใหญ่">
-                <option value="SS">SS (อก36)</option><option value="S">S (อก38)</option>
-                <option value="M">M (อก40)</option><option value="L">L (อก42)</option>
-                <option value="XL">XL (อก44)</option><option value="2XL">2XL (อก46)</option>
-                <option value="3XL">3XL (อก48)</option><option value="4XL">4XL (อก50)</option>
-                <option value="5XL">5XL (อก52)</option><option value="6XL">6XL (อก54)</option>
-                <option value="7XL">7XL (อก56)</option>
-            </optgroup>
-            <optgroup label="เด็ก">
-                <option value="Kids 2S">Kids 2S (อก24)</option><option value="Kids S">Kids S (อก26)</option>
-                <option value="Kids M">Kids M (อก28)</option><option value="Kids L">Kids L (อก30)</option>
-                <option value="Kids XL">Kids XL (อก32)</option><option value="Kids 2XL">Kids 2XL (อก34)</option>
-            </optgroup>
-        `;
-
-        function openOrder(name, price, hasSize) {
+        function openOrder(name, price, hasSize, type) {
             document.getElementById('p_name').value = name;
             document.getElementById('p_price').value = price;
-            document.getElementById('modalTitle').innerText = 'รายการ: ' + name;
-            document.getElementById('c_name').value = '';
-            document.getElementById('c_phone').value = '';
-            document.getElementById('c_qty').value = 1;
-            document.getElementById('del_pickup').checked = true;
-            document.getElementById('slipFile').value = '';
-
+            document.getElementById('p_type').value = type;
+            
+            const isReserve = (type === 'reserve');
+            document.getElementById('modalTitle').innerText = isReserve ? 'จองสินค้า' : 'สั่งซื้อสินค้า';
+            document.getElementById('btnConfirm').innerText = isReserve ? 'ยืนยันการจอง' : 'ยืนยันชำระเงิน';
+            
+            // Logic to Show/Hide Payment Section
+            document.getElementById('paymentSection').style.display = isReserve ? 'none' : 'block';
+            document.getElementById('reserveAlert').style.display = isReserve ? 'block' : 'none';
+            
+            document.getElementById('c_name').value = ''; document.getElementById('c_phone').value = '';
+            document.getElementById('c_qty').value = 1; document.getElementById('slipFile').value = '';
+            
             const container = document.getElementById('dynamicSizeContainer');
-            if(hasSize) {
-                container.style.display = 'block';
-                updateSizeInputs();
-            } else {
-                container.style.display = 'none';
-            }
-            toggleAddr();
+            container.style.display = hasSize ? 'block' : 'none';
+            if(hasSize) updateSizeInputs();
+            
             calcTotal();
             orderModal.show();
         }
@@ -695,93 +467,81 @@
             const qty = parseInt(document.getElementById('c_qty').value) || 1;
             const container = document.getElementById('dynamicSizeContainer');
             if(container.style.display === 'none') return;
-
             let html = '';
-            for(let i=0; i<qty; i++) {
-                html += `<div class="mb-2"><label class="small">Size ชิ้นที่ ${i+1}</label><select class="form-select size-item">${sizeOptions}</select></div>`;
-            }
+            for(let i=0; i<qty; i++) html += `<div class="mb-2"><label class="small text-muted">Size ${i+1}</label><select class="form-select size-item">${sizeOptions}</select></div>`;
             container.innerHTML = html;
             calcTotal();
         }
 
         function toggleAddr() {
-            const isShip = document.getElementById('del_ship').checked;
-            document.getElementById('addrBox').style.display = isShip ? 'block' : 'none';
+            document.getElementById('addrBox').style.display = document.getElementById('del_ship').checked ? 'block' : 'none';
             calcTotal();
         }
 
         function calcTotal() {
             let price = parseInt(document.getElementById('p_price').value);
-            let qty = parseInt(document.getElementById('c_qty').value);
+            let qty = parseInt(document.getElementById('c_qty').value) || 1;
             let shipping = document.getElementById('del_ship').checked ? 30 : 0;
-            if(isNaN(qty) || qty < 1) qty = 1;
             document.getElementById('totalDisplay').innerText = (price * qty) + shipping;
         }
 
         function validateAndSubmit() {
             let name = document.getElementById('c_name').value.trim();
             let phone = document.getElementById('c_phone').value.trim();
-            let slip = document.getElementById('slipFile').value;
             let qty = parseInt(document.getElementById('c_qty').value);
-            
+            let type = document.getElementById('p_type').value;
+            let slip = document.getElementById('slipFile').value;
+
             let sizeString = '-';
             const container = document.getElementById('dynamicSizeContainer');
             if (container.style.display !== 'none') {
                 const selects = container.querySelectorAll('.size-item');
-                let sizes = [];
-                let allSelected = true;
-                selects.forEach(s => {
-                    if (s.value === '-') allSelected = false;
-                    sizes.push(s.value);
-                });
+                let sizes = []; let allSelected = true;
+                selects.forEach(s => { if (s.value === '-') allSelected = false; sizes.push(s.value); });
                 if(!allSelected) { Swal.fire('กรุณาเลือก Size ให้ครบ'); return; }
                 sizeString = sizes.join(', ');
             }
 
-            if(!name || !/^[0-9]{10}$/.test(phone)) { Swal.fire('ข้อมูลไม่ถูกต้อง'); return; }
-            if(!slip) { Swal.fire('กรุณาแนบสลิป'); return; }
+            if(!name || phone.length < 9) { Swal.fire('ข้อมูลไม่ครบถ้วน', '', 'warning'); return; }
+            
+            // Check slip ONLY if buying
+            if(type === 'buy' && !slip) { Swal.fire('กรุณาแนบสลิป', '', 'warning'); return; }
 
-            Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+            Swal.fire({title: 'กำลังบันทึก', didOpen:()=>Swal.showLoading()});
+            if(type === 'reserve') name += " [จอง]";
 
-            let formData = new FormData();
-            formData.append('action', 'order');
-            formData.append('product', document.getElementById('p_name').value);
-            formData.append('size', sizeString);
-            formData.append('qty', qty);
-            formData.append('name', name);
-            formData.append('phone', phone);
-            formData.append('delivery', document.getElementById('del_ship').checked ? 'จัดส่ง' : 'รับเอง');
-            formData.append('address', document.getElementById('c_addr').value);
-            formData.append('total', document.getElementById('totalDisplay').innerText);
+            let fd = new FormData();
+            fd.append('action', 'order');
+            fd.append('product', document.getElementById('p_name').value);
+            fd.append('size', sizeString);
+            fd.append('qty', qty);
+            fd.append('name', name);
+            fd.append('phone', phone);
+            fd.append('delivery', document.getElementById('del_ship').checked ? 'จัดส่ง' : 'รับเอง');
+            fd.append('address', document.getElementById('c_addr').value);
+            fd.append('total', document.getElementById('totalDisplay').innerText);
 
-            fetch(WEB_APP_URL, { method: 'POST', body: formData })
-            .then(res => res.json())
-            .then(data => {
+            fetch(WEB_APP_URL, {method:'POST', body:fd})
+            .then(res=>res.json()).then(data=>{
                 Swal.close();
-                if(data.result === 'success') {
-                    orderModal.hide();
-                    successModal.show();
-                } else {
-                    Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error');
-                }
-            })
-            .catch(() => Swal.fire('Error', 'เชื่อมต่อไม่ได้', 'error'));
+                if(data.result==='success') { orderModal.hide(); successModal.show(); }
+                else Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error');
+            }).catch(()=>Swal.fire('Error', 'Connection Failed', 'error'));
         }
 
+        // --- Admin & Data Logic ---
         function openPublicView() {
             isAdminMode = false;
-            document.getElementById('dataModalTitle').innerText = 'รายการสั่งซื้อ (Read Only)';
             document.getElementById('adminLoginSection').style.display = 'none';
             document.getElementById('dataTableSection').style.display = 'block';
-            document.getElementById('actionHeader').style.display = 'table-cell'; 
             document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('actionHeader').style.display = 'none';
             loadOrders();
             dataModal.show();
         }
 
         function openAdminLogin() {
             isAdminMode = true;
-            document.getElementById('dataModalTitle').innerText = 'Admin Panel';
             document.getElementById('adminLoginSection').style.display = 'block';
             document.getElementById('dataTableSection').style.display = 'none';
             document.getElementById('adminPass').value = '';
@@ -792,134 +552,177 @@
             if(document.getElementById('adminPass').value === 'psl123') {
                 document.getElementById('adminLoginSection').style.display = 'none';
                 document.getElementById('dataTableSection').style.display = 'block';
+                document.getElementById('adminDashboard').style.display = 'block';
                 document.getElementById('actionHeader').style.display = 'table-cell';
                 loadOrders();
-            } else {
-                Swal.fire('รหัสผ่านผิด');
-            }
+            } else Swal.fire('รหัสผ่านผิด', '', 'error');
         }
 
         function loadOrders() {
-            document.getElementById('dataTableBody').innerHTML = '<tr><td colspan="10">Loading...</td></tr>';
+            document.getElementById('dataTableBody').innerHTML = '<tr><td colspan="8" class="text-center py-5"><div class="spinner-border text-primary"></div></td></tr>';
+            
             fetch(WEB_APP_URL + '?action=getOrders')
             .then(res => res.json())
             .then(data => {
-                data.reverse(); 
-                ordersData = data;
-                let html = '';
+                ordersData = data.reverse(); 
                 
                 let totalOrders = data.length;
-                let totalRevenue = 0;
+                let paidRev = 0, unpaidRev = 0;
+                let totalShirts = 0, totalCups = 0;
+                let sizeCount = {};
 
-                data.forEach((item, index) => {
+                let html = '';
+                data.forEach((item) => {
                     let row = item.data;
-                    let realRow = item.row;
-                    let status = row[10] || 'รอตรวจสอบ';
-                    let statusBadge = status === 'อนุมัติแล้ว ✅' ? 'bg-success text-white' : 'bg-warning text-dark';
                     let price = parseInt(row[8]) || 0;
-                    totalRevenue += price;
+                    let qty = parseInt(row[3]) || 0;
+                    let isReserve = (row[4].includes('[จอง]') || (row[10] && row[10].includes('จอง')));
+                    let product = row[1];
+                    let sizes = row[2] ? row[2].split(',').map(s=>s.trim()) : [];
+                    let status = row[10] || 'จอง';
 
-                    let viewBtn = `<button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="openViewDetail(${index})"><i class="fas fa-eye"></i> ดู</button>`;
+                    if(status.includes('อนุมัติ')) paidRev += price;
+                    else unpaidRev += price;
+
+                    if(product.includes('เสื้อ')) {
+                        totalShirts += qty;
+                        sizes.forEach(s => { if(s!=='-') sizeCount[s] = (sizeCount[s]||0)+1; });
+                    } else if(product.includes('แก้ว')) {
+                        totalCups += qty;
+                    } else if(product.includes('คอมโบ')) {
+                        totalShirts += qty;
+                        totalCups += qty;
+                        sizes.forEach(s => { if(s!=='-') sizeCount[s] = (sizeCount[s]||0)+1; });
+                    }
+
+                    let badge = status.includes('อนุมัติ') ? 'badge bg-success' : 'badge bg-warning text-dark';
+                    if(status.includes('จอง') && isReserve) badge = 'badge bg-info text-dark'; 
+
                     let adminBtns = '';
-                    
                     if(isAdminMode) {
-                        adminBtns = `
-                            <button class="btn btn-success btn-sm rounded-circle" onclick="approveOrder(${realRow})"><i class="fas fa-check"></i></button>
-                            <button class="btn btn-warning btn-sm rounded-circle" onclick="openEdit(${index})"><i class="fas fa-edit"></i></button>
-                            <button class="btn btn-danger btn-sm rounded-circle" onclick="delOrder(${realRow})"><i class="fas fa-trash"></i></button>
-                        `;
+                        if(!status.includes('อนุมัติ')) {
+                            adminBtns += `<button class="btn-action bg-success" onclick="approveOrder(${item.row})" title="อนุมัติว่าจ่ายแล้ว"><i class="fas fa-check"></i></button>`;
+                        }
+                        let safeName = row[4].replace(/"/g, '&quot;');
+                        let safePhone = row[5];
+                        let safeAddr = row[7] ? row[7].replace(/"/g, '&quot;').replace(/\n/g, ' ') : '';
+                        
+                        adminBtns += `<button class="btn-action bg-warning" onclick="openEdit(${item.row}, '${safeName}', '${safePhone}', '${safeAddr}')" title="แก้ไขข้อมูล"><i class="fas fa-pen"></i></button>`;
+                        adminBtns += `<button class="btn-action bg-danger" onclick="delOrder(${item.row})" title="ลบรายการ"><i class="fas fa-trash"></i></button>`;
                     }
 
                     html += `<tr>
                         <td data-label="วันที่">${row[0]}</td>
-                        <td data-label="ชื่อ">${row[4]}</td>
-                        <td data-label="สินค้า">${row[1]}</td>
+                        <td data-label="ชื่อ">${row[4].replace('[จอง]','')}</td>
+                        <td data-label="สินค้า">${product}</td>
                         <td class="mobile-hide" data-label="Size">${row[2]}</td>
-                        <td class="mobile-hide" data-label="จำนวน">${row[3]}</td>
-                        <td data-label="ยอดรวม">${row[8]}</td>
-                        <td data-label="สถานะ"><span class="status-badge ${statusBadge}">${status}</span></td>
-                        <td data-label="จัดการ">${viewBtn} ${adminBtns}</td>
+                        <td class="mobile-hide" data-label="จำนวน">${qty}</td>
+                        <td data-label="ยอดรวม">${price}</td>
+                        <td data-label="สถานะ"><span class="${badge}">${status}</span></td>
+                        <td data-label="">${adminBtns}</td>
                     </tr>`;
                 });
 
                 document.getElementById('dataTableBody').innerHTML = html;
 
                 if(isAdminMode) {
-                    document.getElementById('adminDashboard').style.display = 'flex';
-                    document.getElementById('adminTotalOrders').innerText = totalOrders + ' รายการ';
-                    document.getElementById('adminTotalRevenue').innerText = totalRevenue.toLocaleString() + ' ฿';
+                    document.getElementById('statTotalOrders').innerText = totalOrders;
+                    document.getElementById('statPaidRevenue').innerText = paidRev.toLocaleString() + ' ฿';
+                    document.getElementById('statUnpaidRevenue').innerText = unpaidRev.toLocaleString() + ' ฿';
+                    document.getElementById('statTotalRevenue').innerText = (paidRev + unpaidRev).toLocaleString() + ' ฿';
+                    document.getElementById('totalCups').innerText = totalCups + ' ใบ';
+                    document.getElementById('totalShirts').innerText = totalShirts + ' ตัว';
+
+                    let sizeHeaderHtml = '', sizeRowHtml = '';
+                    const sizeOrder = ['Kids 2S','Kids S','Kids M','Kids L','Kids XL','SS','S','M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'];
+                    let sortedKeys = Object.keys(sizeCount).sort((a,b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b));
+
+                    if(sortedKeys.length === 0) {
+                        sizeHeaderHtml = '<th>ไม่มีข้อมูล</th>'; sizeRowHtml = '<td>-</td>';
+                    } else {
+                        sortedKeys.forEach(k => {
+                             sizeHeaderHtml += `<th>${k}</th>`;
+                             sizeRowHtml += `<td>${sizeCount[k]}</td>`;
+                        });
+                    }
+                    document.getElementById('shirtSizeHeader').innerHTML = sizeHeaderHtml;
+                    document.getElementById('shirtSizeRow').innerHTML = sizeRowHtml;
                 }
             });
         }
 
-        function openViewDetail(index) {
-            let row = ordersData[index].data;
-            let status = row[10] || 'รอตรวจสอบ';
-            let html = `
-                <div class="detail-row"><span class="detail-label">วันที่สั่งซื้อ:</span> <span class="detail-value">${row[0]}</span></div>
-                <div class="detail-row"><span class="detail-label">ชื่อผู้สั่ง:</span> <span class="detail-value">${row[4]}</span></div>
-                <div class="detail-row"><span class="detail-label">เบอร์โทร:</span> <span class="detail-value">${row[5]}</span></div>
-                <div class="detail-row"><span class="detail-label">สินค้า:</span> <span class="detail-value">${row[1]}</span></div>
-                <div class="detail-row"><span class="detail-label">Size:</span> <span class="detail-value">${row[2]}</span></div>
-                <div class="detail-row"><span class="detail-label">จำนวน:</span> <span class="detail-value">${row[3]} ชิ้น</span></div>
-                <div class="detail-row"><span class="detail-label">การจัดส่ง:</span> <span class="detail-value">${row[6]}</span></div>
-                <div class="detail-row"><span class="detail-label">ที่อยู่จัดส่ง:</span> <span class="detail-value" style="max-width:60%;">${row[7] || '-'}</span></div>
-                <div class="detail-row"><span class="detail-label">ยอดชำระรวม:</span> <span class="detail-value fw-bold text-success">${row[8]} บาท</span></div>
-                <div class="detail-row border-0"><span class="detail-label">สถานะ:</span> <span class="detail-value"><strong>${status}</strong></span></div>
-            `;
-            document.getElementById('viewDetailBody').innerHTML = html;
-            viewDetailModal.show();
-        }
-
         function approveOrder(rowId) {
-            Swal.fire({title: 'กำลังอนุมัติ...', didOpen: () => Swal.showLoading()});
-            let fd = new FormData();
-            fd.append('action', 'approve');
-            fd.append('row', rowId);
-            fetch(WEB_APP_URL, {method:'POST', body:fd}).then(() => { Swal.close(); loadOrders(); });
+            Swal.fire({
+                title: 'ยืนยันอนุมัติ?',
+                text: "เปลี่ยนสถานะเป็น 'อนุมัติแล้ว'",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'อนุมัติ',
+                cancelButtonText: 'ยกเลิก'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({title: 'กำลังบันทึก', didOpen:()=>Swal.showLoading()});
+                    let fd = new FormData(); 
+                    fd.append('action', 'approve'); 
+                    fd.append('row', rowId);
+                    
+                    fetch(WEB_APP_URL, {method:'POST', body:fd})
+                    .then(res=>res.json())
+                    .then(data=>{
+                        Swal.close();
+                        if(data.result === 'success') {
+                            loadOrders(); 
+                        } else {
+                            Swal.fire('Error', 'เกิดข้อผิดพลาด', 'error');
+                        }
+                    });
+                }
+            });
         }
 
-        function delOrder(rowId) {
-            if(!confirm('ลบรายการนี้?')) return;
-            let fd = new FormData();
-            fd.append('action', 'delete');
-            fd.append('row', rowId);
-            fetch(WEB_APP_URL, {method:'POST', body:fd}).then(() => loadOrders());
-        }
-
-        function openEdit(index) {
-            let row = ordersData[index].data;
-            document.getElementById('editRow').value = ordersData[index].row;
-            document.getElementById('editProd').value = row[1];
-            document.getElementById('editSize').value = row[2];
-            document.getElementById('editQty').value = row[3];
-            document.getElementById('editName').value = row[4];
-            document.getElementById('editPhone').value = row[5];
-            document.getElementById('editDel').value = row[6];
-            document.getElementById('editAddr').value = row[7];
-            document.getElementById('editTotal').value = row[8];
+        function openEdit(rowId, name, phone, addr) {
+            document.getElementById('edit_row_id').value = rowId;
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_phone').value = phone;
+            document.getElementById('edit_addr').value = addr;
             editModal.show();
         }
 
         function saveEdit() {
-            let fd = new FormData();
-            fd.append('action', 'edit');
-            fd.append('row', document.getElementById('editRow').value);
-            fd.append('product', document.getElementById('editProd').value);
-            fd.append('size', document.getElementById('editSize').value);
-            fd.append('qty', document.getElementById('editQty').value);
-            fd.append('name', document.getElementById('editName').value);
-            fd.append('phone', document.getElementById('editPhone').value);
-            fd.append('delivery', document.getElementById('editDel').value);
-            fd.append('address', document.getElementById('editAddr').value);
-            fd.append('total', document.getElementById('editTotal').value);
+            let rowId = document.getElementById('edit_row_id').value;
+            let name = document.getElementById('edit_name').value;
+            let phone = document.getElementById('edit_phone').value;
+            let addr = document.getElementById('edit_addr').value;
+
+            Swal.fire({title: 'กำลังแก้ไข', didOpen:()=>Swal.showLoading()});
             
-            Swal.fire({title: 'Updating...', didOpen:()=>Swal.showLoading()});
-            fetch(WEB_APP_URL, {method:'POST', body:fd}).then(() => {
-                Swal.close(); editModal.hide(); loadOrders();
+            let fd = new FormData(); 
+            fd.append('action', 'edit'); 
+            fd.append('row', rowId);
+            fd.append('name', name);
+            fd.append('phone', phone);
+            fd.append('address', addr);
+
+            fetch(WEB_APP_URL, {method:'POST', body:fd})
+            .then(res=>res.json())
+            .then(data=>{
+                Swal.close();
+                if(data.result === 'success') {
+                    editModal.hide();
+                    loadOrders(); 
+                    Swal.fire('สำเร็จ', 'แก้ไขข้อมูลเรียบร้อย', 'success');
+                } else {
+                    Swal.fire('Error', 'เกิดข้อผิดพลาด', 'error');
+                }
             });
+        }
+
+        function delOrder(rowId) {
+            if(confirm('ยืนยันลบรายการนี้?')) {
+                let fd = new FormData(); fd.append('action', 'delete'); fd.append('row', rowId);
+                fetch(WEB_APP_URL, {method:'POST', body:fd}).then(()=>loadOrders());
+            }
         }
     </script>
 </body>
-
 </html>
