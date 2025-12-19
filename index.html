@@ -225,9 +225,6 @@
         <div class="mb-4">
             <a href="tel:0953205156" class="btn-link-custom"><i class="fas fa-phone-alt"></i> ฟิล์ม: 095-320-5156</a>
             <a href="tel:0969808374" class="btn-link-custom"><i class="fas fa-phone-alt"></i> กัปตัน: 096-980-8374</a>
-        </div>
-        <div>
-            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> รายการสั่งซื้อ</span>
             <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ</span>
         </div>
         <p class="mt-4 text-muted small">&copy; 2024 PSL 20th Anniversary.</p>
@@ -550,4 +547,5 @@
         function delOrder(rowId) { if(confirm('ยืนยันลบ?')){ let fd=new FormData();fd.append('action','delete');fd.append('row',rowId);fetch(WEB_APP_URL,{method:'POST',body:fd}).then(()=>loadOrders());}}
     </script>
 </body>
+
 </html>
