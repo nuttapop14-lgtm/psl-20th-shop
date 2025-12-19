@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSL 20th Anniversary Collection</title>
+    
+    <meta name="description" content="สั่งจองเสื้อและของที่ระลึกงานฟุตบอล PSL 20th Anniversary">
+    <meta property="og:title" content="PSL 20th Anniversary Collection">
+    <meta property="og:image" content="images/logo.png">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/NGx45YYr/3_(1).png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream: #FDFBF7;
+            --primary-brown: #8D6E63;
+            --dark-brown: #5D4037;
+            --soft-white: #ffffff;
+            --text-color: #4E342E;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-color);
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar { background-color: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(141, 110, 99, 0.08); }
+        .navbar-brand { font-weight: 600; color: var(--dark-brown) !important; font-size: 1.35rem; display: flex; align-items: center; }
+        .custom-navbar-icon { height: 1.6rem; margin-right: 10px; }
+        
+        /* Product Cards */
+        .product-card { background: var(--soft-white); border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(141, 110, 99, 0.15); }
+        .product-img-box { height: 300px; width: 100%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fafafa; }
+        .product-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .product-img-box img { transform: scale(1.05); }
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+
+        /* Buttons */
+        .btn-custom { background: linear-gradient(45deg, #8D6E63, #6D4C41); color: white; border-radius: 50px; border: none; transition: 0.3s; }
+        .btn-custom:hover { background: linear-gradient(45deg, #6D4C41, #5D4037); transform: scale(1.02); }
+        .btn-outline-custom { background: transparent; color: var(--primary-brown); border: 2px solid var(--primary-brown); border-radius: 50px; transition: 0.3s; font-weight: 600; }
+        .btn-outline-custom:hover { background: var(--primary-brown); color: white; }
+
+        .footer-contact { background: white; padding: 60px 20px; margin-top: 80px; text-align: center; border-top: 1px solid #eee; }
+        .btn-link-custom { border: 1px solid #ddd; padding: 10px 25px; border-radius: 30px; margin: 5px; display: inline-block; color: #666; text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .btn-link-custom:hover { border-color: var(--primary-brown); color: var(--primary-brown); }
+
+        /* Table & Tabs */
+        .nav-pills .nav-link { color: var(--text-color); background-color: #f1f1f1; border-radius: 50px; margin: 0 5px; padding: 10px 25px; font-weight: 500; }
+        .nav-pills .nav-link.active { background-color: var(--primary-brown); color: white; }
+        .table-size th { background-color: #EFEBE9; color: var(--dark-brown); white-space: nowrap; padding: 15px; }
+
+        /* Admin Dashboard */
+        .stat-card { border-radius: 15px; padding: 20px; color: white; position: relative; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); height: 100%; }
+        .bg-grad-primary { background: linear-gradient(135deg, #8D6E63, #5D4037); }
+        .bg-grad-success { background: linear-gradient(135deg, #66BB6A, #2E7D32); }
+        .bg-grad-info { background: linear-gradient(135deg, #4FC3F7, #0288D1); }
+        .bg-grad-warning { background: linear-gradient(135deg, #FFCA28, #F57C00); }
+        .stat-icon { position: absolute; right: 15px; bottom: 15px; font-size: 3rem; opacity: 0.2; }
+        
+        .table-admin { font-size: 0.9rem; }
+        .inv-table th { background-color: #f8f9fa; color: #555; }
+        .btn-action { width: 32px; height: 32px; padding: 0; line-height: 32px; border-radius: 50%; text-align: center; margin: 0 2px; border:none; color: white;}
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-hide { display: none !important; }
+            .table-admin thead { display: none; }
+            .table-admin tr { display: block; margin-bottom: 15px; border: 1px solid #eee; border-radius: 10px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+            .table-admin td { display: flex; justify-content: space-between; border: none; padding: 5px 0; }
+            .table-admin td:before { content: attr(data-label); font-weight: bold; color: var(--dark-brown); }
+        }
+        
+        #scrollTopBtn { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99; border: none; background: var(--primary-brown); color: white; padding: 15px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        #editModal { z-index: 10000 !important; }
+        .modal-backdrop:nth-of-type(2) { z-index: 9999 !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top">
+        <div class="container">
+            <span class="navbar-brand mx-auto" data-aos="fade-down">
+                <img src="images/logo.png" alt="Logo" class="custom-navbar-icon" onerror="this.src='https://i.postimg.cc/NGx45YYr/3_(1).png'"> 
+                PSL 20th Anniversary
+            </span>
+        </div>
+    </nav>
+
+    <div id="mainCarousel" class="carousel slide mt-5 pt-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="5"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="6"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="7"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="height: 60vh;"><img src="images/11.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 1"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/12.jpeg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 2" onerror="this.src='images/12.JPEG'"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/13.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 3"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/14.png" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 4" onerror="this.src='images/14.png'"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/15.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 5"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/16.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 6"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/17.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 7"></div>
+            <div class="carousel-item" style="height: 60vh;"><img src="images/18.jpg" class="d-block w-100" style="object-fit: cover; height: 100%;" alt="Slide 8"></div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+
+    <div class="container text-center mt-5" data-aos="fade-up">
+        <button class="btn btn-outline-custom px-4 py-2" onclick="openPublicView()">
+            <i class="fas fa-search me-2"></i> ตรวจสอบสถานะคำสั่งซื้อ
+        </button>
+    </div>
+
+    <div class="container py-5">
+        <h2 class="text-center mb-5 fw-bold" style="color: var(--dark-brown);" data-aos="fade-up">COLLECTION PRODUCT</h2>
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-card">
+                    <div class="product-img-box"><img src="images/21.jpg" alt="เสื้อ PSL"></div>
+                    <div class="card-body">
+                        <div><h4 class="fw-bold">เสื้อที่ระลึก PSL</h4><p class="text-brown fs-3 fw-bold mb-3">499.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('เสื้อที่ระลึก', 499, true, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('เสื้อที่ระลึก', 499, true, 'reserve')">จอง</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-card">
+                    <div class="product-img-box"><img src="images/22.jpg" alt="แก้วน้ำ"></div>
+                    <div class="card-body">
+                        <div><h4 class="fw-bold">แก้วเก็บความเย็น</h4><p class="text-brown fs-3 fw-bold mb-3">299.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('แก้วเก็บความเย็น', 299, false, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('แก้วเก็บความเย็น', 299, false, 'reserve')">จอง</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-card">
+                    <div class="product-img-box"><img src="images/23.JPG" alt="ชุดคอมโบ" onerror="this.src='images/23.jpg'"></div>
+                    <div class="card-body">
+                        <div><h4 class="fw-bold">ชุดคอมโบ (เสื้อ+แก้ว)</h4><p class="text-brown fs-3 fw-bold mb-3">699.-</p></div>
+                        <div class="row g-2 w-100 mx-auto">
+                            <div class="col-6"><button class="btn btn-custom w-100" onclick="openOrder('ชุดคอมโบ', 699, true, 'buy')">ซื้อเลย</button></div>
+                            <div class="col-6"><button class="btn btn-outline-custom w-100" onclick="openOrder('ชุดคอมโบ', 699, true, 'reserve')">จอง</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container pb-5" data-aos="fade-up">
+        <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm mt-5">
+            <h3 class="text-center fw-bold mb-3" style="color: var(--dark-brown);">ตาราง Size</h3>
+            <ul class="nav nav-pills justify-content-center mb-4" id="sizeTab">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#adult">ผู้ใหญ่</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#junior">เด็ก</button></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="adult">
+                    <div class="table-responsive">
+                        <table class="table text-center table-size mb-0">
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
+                            <tbody>
+                                <tr><td>SS</td><td>36"</td><td>26"</td></tr>
+                                <tr><td>S</td><td>38"</td><td>27"</td></tr>
+                                <tr><td>M</td><td>40"</td><td>28"</td></tr>
+                                <tr><td>L</td><td>42"</td><td>29"</td></tr>
+                                <tr><td>XL</td><td>44"</td><td>30"</td></tr>
+                                <tr><td>2XL</td><td>46"</td><td>31"</td></tr>
+                                <tr><td>3XL</td><td>48"</td><td>32"</td></tr>
+                                <tr><td>4XL</td><td>50"</td><td>33"</td></tr>
+                                <tr><td>5XL</td><td>52"</td><td>34"</td></tr>
+                                <tr><td>6XL</td><td>54"</td><td>35"</td></tr>
+                                <tr><td>7XL</td><td>56"</td><td>35"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="junior">
+                    <div class="table-responsive">
+                        <table class="table text-center table-size mb-0">
+                            <thead><tr><th>Size</th><th>รอบอก (นิ้ว)</th><th>ความยาว (นิ้ว)</th></tr></thead>
+                            <tbody>
+                                <tr><td>2S</td><td>24"</td><td>18"</td></tr>
+                                <tr><td>S</td><td>26"</td><td>19"</td></tr>
+                                <tr><td>M</td><td>28"</td><td>20"</td></tr>
+                                <tr><td>L</td><td>30"</td><td>21"</td></tr>
+                                <tr><td>XL</td><td>32"</td><td>22"</td></tr>
+                                <tr><td>2XL</td><td>34"</td><td>23"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-contact">
+        <h4 class="fw-bold mb-4" style="color: var(--dark-brown);">ติดต่อสอบถาม</h4>
+        <div class="mb-4">
+            <a href="tel:0953205156" class="btn-link-custom"><i class="fas fa-phone-alt"></i> ฟิล์ม: 095-320-5156</a>
+            <a href="tel:0969808374" class="btn-link-custom"><i class="fas fa-phone-alt"></i> กัปตัน: 096-980-8374</a>
+        </div>
+        <div>
+            <span class="btn-link-custom" onclick="openPublicView()"><i class="fas fa-list-alt"></i> รายการสั่งซื้อ</span>
+            <span class="btn-link-custom" onclick="openAdminLogin()"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ</span>
+        </div>
+        <p class="mt-4 text-muted small">&copy; 2024 PSL 20th Anniversary.</p>
+    </div>
+
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title fw-bold" id="modalTitle">รายละเอียด</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <input type="hidden" id="p_name"><input type="hidden" id="p_price"><input type="hidden" id="p_type">
+                        <div class="alert alert-info" id="reserveAlert" style="display:none;"><i class="fas fa-info-circle"></i> คุณกำลังอยู่ในโหมด <strong>"จองสินค้า"</strong> (ยังไม่ต้องชำระเงิน)</div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6"><label class="small text-muted">ชื่อ-นามสกุล</label><input type="text" id="c_name" class="form-control" required></div>
+                            <div class="col-md-6"><label class="small text-muted">เบอร์โทรศัพท์</label><input type="tel" id="c_phone" class="form-control" maxlength="10" required></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold">จำนวน</label><input type="number" id="c_qty" class="form-control w-25 mb-2" value="1" min="1" onchange="updateSizeInputs()">
+                            <div id="dynamicSizeContainer" class="p-3 bg-light rounded border"></div>
+                        </div>
+                        <div class="mb-4 p-3 border rounded">
+                            <label class="fw-bold">การจัดส่ง</label>
+                            <div>
+                                <input type="radio" name="delivery" id="del_pickup" value="pickup" checked onchange="toggleAddr()"> รับเอง (ฟรี)
+                                <input type="radio" name="delivery" id="del_ship" value="ship" onchange="toggleAddr()" class="ms-3"> จัดส่ง (+30บ.)
+                            </div>
+                            <div class="mt-2" id="addrBox" style="display:none;"><textarea id="c_addr" class="form-control" rows="2" placeholder="ที่อยู่จัดส่ง..."></textarea></div>
+                        </div>
+                        <div class="text-center p-3 bg-light rounded border">
+                            <h4>ยอดชำระ: <span id="totalDisplay" class="text-danger fw-bold">0</span> บาท</h4>
+                            <div id="paymentSection">
+                                <hr>
+                                <div class="bg-white p-3 border rounded d-inline-block mt-2 shadow-sm">
+                                    <h6 class="text-secondary">ธนาคารกรุงไทย</h6><h5 class="fw-bold">นายณรรถภพ สราญรมย์</h5><h4 class="text-primary fw-bold my-2">679-3-95520-9</h4>
+                                    <img src="images/qr.jpg" alt="QR Code" style="width: 280px; border: 1px solid #ddd; border-radius: 8px;">
+                                </div>
+                                <div class="mt-3"><label class="text-danger small fw-bold">* แนบสลิปการโอนเงิน</label><input type="file" id="slipFile" class="form-control mt-1" accept="image/*"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary w-100" data-bs-dismiss="modal">ยกเลิก</button><button class="btn btn-custom w-100" id="btnConfirm" onclick="validateAndSubmit()">ยืนยัน</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark"><h5 class="modal-title fw-bold"><i class="fas fa-edit"></i> แก้ไขข้อมูลลูกค้า</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_row_id">
+                    <div class="mb-3"><label class="form-label small">ชื่อ-นามสกุล</label><input type="text" id="edit_name" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small">เบอร์โทรศัพท์</label><input type="text" id="edit_phone" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small">Size (ระบุหลายตัวคั่นด้วย ,)</label><input type="text" id="edit_size" class="form-control"></div>
+                    <div class="mb-3"><label class="form-label small">ที่อยู่</label><textarea id="edit_addr" class="form-control" rows="3"></textarea></div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button><button class="btn btn-primary" onclick="saveEdit()">บันทึกการแก้ไข</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="successModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content text-center p-5"><i class="fas fa-check-circle fa-5x text-success mb-3"></i><h3>สำเร็จ!</h3><p>บันทึกข้อมูลแล้ว</p><button class="btn btn-secondary mt-3" data-bs-dismiss="modal">ปิด</button></div></div></div>
+
+    <div class="modal fade" id="dataModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white"><h5 class="modal-title" id="dataModalTitle">รายการสั่งซื้อ</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+                <div class="modal-body bg-light">
+                    <div id="adminLoginSection" class="text-center py-5" style="display:none;">
+                        <i class="fas fa-lock fa-3x mb-3 text-secondary"></i><input type="password" id="adminPass" class="form-control w-50 mx-auto mb-3" placeholder="รหัสผ่าน Admin"><button class="btn btn-dark w-50 rounded-pill" onclick="checkAdmin()">Login</button>
+                    </div>
+                    <div id="dataTableSection" style="display:none;">
+                        <div id="adminDashboard" style="display:none;">
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-3"><div class="stat-card bg-grad-primary"><h5>คำสั่งซื้อทั้งหมด</h5><h2 class="fw-bold" id="statTotalOrders">0</h2><i class="fas fa-shopping-bag stat-icon"></i></div></div>
+                                <div class="col-md-3"><div class="stat-card bg-grad-success"><h5>รายได้ (จ่ายแล้ว)</h5><h2 class="fw-bold" id="statPaidRevenue">0</h2><i class="fas fa-coins stat-icon"></i></div></div>
+                                <div class="col-md-3"><div class="stat-card bg-grad-info"><h5>รอชำระ (จอง)</h5><h2 class="fw-bold" id="statUnpaidRevenue">0</h2><i class="fas fa-clock stat-icon"></i></div></div>
+                                <div class="col-md-3"><div class="stat-card bg-grad-warning"><h5>ยอดรวมทั้งหมด</h5><h2 class="fw-bold" id="statTotalRevenue">0</h2><small>จ่ายแล้ว + จอง</small><i class="fas fa-chart-line stat-icon"></i></div></div>
+                            </div>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-8"><div class="bg-white p-3 rounded shadow-sm h-100"><h5 class="fw-bold mb-3 text-brown"><i class="fas fa-tshirt"></i> สรุปจำนวนเสื้อที่ต้องสั่งผลิต</h5><div class="table-responsive"><table class="table table-bordered table-sm text-center inv-table mb-0"><thead><tr id="shirtSizeHeader"></tr></thead><tbody><tr id="shirtSizeRow"></tr></tbody></table></div></div></div>
+                                <div class="col-md-4"><div class="bg-white p-3 rounded shadow-sm h-100"><h5 class="fw-bold mb-3 text-brown"><i class="fas fa-mug-hot"></i> สรุปจำนวนสินค้า</h5><div class="d-flex justify-content-between border-bottom pb-2 mb-2"><span>แก้วเก็บความเย็น</span><span class="fs-4 fw-bold text-success" id="totalCups">0 ใบ</span></div><div class="d-flex justify-content-between"><span>เสื้อรวมทั้งหมด</span><span class="fs-4 fw-bold text-primary" id="totalShirts">0 ตัว</span></div></div></div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3"><span class="text-muted small">แสดงข้อมูลล่าสุดก่อน</span><button class="btn btn-success btn-sm rounded-pill px-3" onclick="loadOrders()"><i class="fas fa-sync me-1"></i> รีเฟรช</button></div>
+                        <div class="table-responsive bg-white rounded shadow-sm">
+                            <table class="table table-hover align-middle mb-0 table-admin">
+                                <thead class="table-secondary text-center"><tr><th>วันที่</th><th>ลูกค้า</th><th>สินค้า</th><th>การจัดส่ง</th><th class="mobile-hide">Size</th><th class="mobile-hide">จำนวน</th><th>ยอดรวม</th><th>สถานะ</th><th id="actionHeader">จัดการ</th></tr></thead>
+                                <tbody id="dataTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({ duration: 800, once: true });
+        window.onscroll = function() { document.getElementById("scrollTopBtn").style.display = (window.scrollY > 100) ? "block" : "none"; };
+        
+        // ** อย่าลืมเปลี่ยน URL ตรงนี้เป็นของ Script ตัวเอง **
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxbedxlv-UXJqR1Acc2HTijibffdmLHjfSYt8kthLcF00bDehSNx_uDFC3_y19DlEB32Q/exec'; 
+        
+        const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        const dataModal = new bootstrap.Modal(document.getElementById('dataModal'));
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+
+        let isAdminMode = false;
+        let ordersData = [];
+        const sizeOptions = `<option value="-">-- เลือก Size --</option><optgroup label="ผู้ใหญ่"><option value="SS">SS (อก36)</option><option value="S">S (อก38)</option><option value="M">M (อก40)</option><option value="L">L (อก42)</option><option value="XL">XL (อก44)</option><option value="2XL">2XL (อก46)</option><option value="3XL">3XL (อก48)</option><option value="4XL">4XL (อก50)</option><option value="5XL">5XL (อก52)</option><option value="6XL">6XL (อก54)</option><option value="7XL">7XL (อก56)</option></optgroup><optgroup label="เด็ก"><option value="Kids 2S">Kids 2S (อก24)</option><option value="Kids S">Kids S (อก26)</option><option value="Kids M">Kids M (อก28)</option><option value="Kids L">Kids L (อก30)</option><option value="Kids XL">Kids XL (อก32)</option><option value="Kids 2XL">Kids 2XL (อก34)</option></optgroup>`;
+
+        function openOrder(name, price, hasSize, type) {
+            document.getElementById('p_name').value = name;
+            document.getElementById('p_price').value = price;
+            document.getElementById('p_type').value = type;
+            const isReserve = (type === 'reserve');
+            document.getElementById('modalTitle').innerText = isReserve ? 'จองสินค้า' : 'สั่งซื้อสินค้า';
+            document.getElementById('btnConfirm').innerText = isReserve ? 'ยืนยันการจอง' : 'ยืนยันชำระเงิน';
+            document.getElementById('paymentSection').style.display = isReserve ? 'none' : 'block';
+            document.getElementById('reserveAlert').style.display = isReserve ? 'block' : 'none';
+            document.getElementById('c_name').value = ''; document.getElementById('c_phone').value = '';
+            document.getElementById('c_qty').value = 1; document.getElementById('slipFile').value = '';
+            const container = document.getElementById('dynamicSizeContainer');
+            container.style.display = hasSize ? 'block' : 'none';
+            if(hasSize) updateSizeInputs();
+            calcTotal();
+            orderModal.show();
+        }
+
+        function updateSizeInputs() {
+            const qty = parseInt(document.getElementById('c_qty').value) || 1;
+            const container = document.getElementById('dynamicSizeContainer');
+            if(container.style.display === 'none') return;
+            let html = '';
+            for(let i=0; i<qty; i++) html += `<div class="mb-2"><label class="small text-muted">Size ${i+1}</label><select class="form-select size-item">${sizeOptions}</select></div>`;
+            container.innerHTML = html;
+            calcTotal();
+        }
+
+        function toggleAddr() {
+            document.getElementById('addrBox').style.display = document.getElementById('del_ship').checked ? 'block' : 'none';
+            calcTotal();
+        }
+
+        function calcTotal() {
+            let price = parseInt(document.getElementById('p_price').value);
+            let qty = parseInt(document.getElementById('c_qty').value) || 1;
+            let shipping = document.getElementById('del_ship').checked ? 30 : 0;
+            document.getElementById('totalDisplay').innerText = (price * qty) + shipping;
+        }
+
+        function validateAndSubmit() {
+            let name = document.getElementById('c_name').value.trim();
+            let phone = document.getElementById('c_phone').value.trim();
+            let qty = parseInt(document.getElementById('c_qty').value);
+            let type = document.getElementById('p_type').value;
+            let slip = document.getElementById('slipFile').value;
+            let sizeString = '-';
+            const container = document.getElementById('dynamicSizeContainer');
+            if (container.style.display !== 'none') {
+                const selects = container.querySelectorAll('.size-item');
+                let sizes = []; let allSelected = true;
+                selects.forEach(s => { if (s.value === '-') allSelected = false; sizes.push(s.value); });
+                if(!allSelected) { Swal.fire('กรุณาเลือก Size ให้ครบ'); return; }
+                sizeString = sizes.join(', ');
+            }
+            if(!name || phone.length < 9) { Swal.fire('ข้อมูลไม่ครบถ้วน', '', 'warning'); return; }
+            if(type === 'buy' && !slip) { Swal.fire('กรุณาแนบสลิป', '', 'warning'); return; }
+            Swal.fire({title: 'กำลังบันทึก', didOpen:()=>Swal.showLoading()});
+            if(type === 'reserve') name += " [จอง]";
+            let fd = new FormData();
+            fd.append('action', 'order'); fd.append('product', document.getElementById('p_name').value);
+            fd.append('size', sizeString); fd.append('qty', qty); fd.append('name', name);
+            fd.append('phone', phone); fd.append('delivery', document.getElementById('del_ship').checked ? 'จัดส่ง' : 'รับเอง');
+            fd.append('address', document.getElementById('c_addr').value); fd.append('total', document.getElementById('totalDisplay').innerText);
+            fetch(WEB_APP_URL, {method:'POST', body:fd}).then(res=>res.json()).then(data=>{
+                Swal.close(); if(data.result==='success') { orderModal.hide(); successModal.show(); } else Swal.fire('Error', 'บันทึกไม่สำเร็จ', 'error');
+            }).catch(()=>Swal.fire('Error', 'Connection Failed', 'error'));
+        }
+
+        // --- Admin & Data Logic ---
+        function openPublicView() {
+            isAdminMode = false;
+            document.getElementById('adminLoginSection').style.display = 'none';
+            document.getElementById('dataTableSection').style.display = 'block';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('actionHeader').style.display = 'none';
+            loadOrders();
+            dataModal.show();
+        }
+
+        function openAdminLogin() {
+            isAdminMode = true;
+            document.getElementById('adminLoginSection').style.display = 'block';
+            document.getElementById('dataTableSection').style.display = 'none';
+            document.getElementById('adminPass').value = '';
+            dataModal.show();
+        }
+
+        function checkAdmin() {
+            if(document.getElementById('adminPass').value === 'psl123') {
+                document.getElementById('adminLoginSection').style.display = 'none';
+                document.getElementById('dataTableSection').style.display = 'block';
+                document.getElementById('adminDashboard').style.display = 'block';
+                document.getElementById('actionHeader').style.display = 'table-cell';
+                loadOrders();
+            } else Swal.fire('รหัสผ่านผิด', '', 'error');
+        }
+
+        function loadOrders() {
+            document.getElementById('dataTableBody').innerHTML = '<tr><td colspan="9" class="text-center py-5"><div class="spinner-border text-primary"></div></td></tr>';
+            fetch(WEB_APP_URL + '?action=getOrders').then(res => res.json()).then(data => {
+                ordersData = data.reverse(); 
+                let totalOrders = data.length;
+                let paidRev = 0, unpaidRev = 0;
+                let totalShirts = 0, totalCups = 0;
+                let sizeCount = {};
+                let html = '';
+                
+                data.forEach((item) => {
+                    let row = item.data;
+                    let rawPrice = String(row[8]).replace(/,/g, '').replace(/฿/g, '').trim(); 
+                    let price = parseInt(rawPrice) || 0;
+                    let qty = parseInt(row[3]) || 0;
+                    let product = row[1];
+                    let sizes = row[2] ? row[2].split(',').map(s=>s.trim()) : [];
+                    let status = (row[10] || 'รอตรวจสอบ').toString().trim();
+                    
+                    // Logic แยกยอดเงิน
+                    if(status.includes('อนุมัติ') || status.includes('ชำระแล้ว')) { paidRev += price; } else { unpaidRev += price; }
+
+                    if(product.includes('เสื้อ')) { totalShirts += qty; sizes.forEach(s => { if(s!=='-') sizeCount[s] = (sizeCount[s]||0)+1; }); } 
+                    else if(product.includes('แก้ว')) { totalCups += qty; } 
+                    else if(product.includes('คอมโบ')) { totalShirts += qty; totalCups += qty; sizes.forEach(s => { if(s!=='-') sizeCount[s] = (sizeCount[s]||0)+1; }); }
+
+                    // Logic สีสถานะ
+                    let badge = (status.includes('อนุมัติ') || status.includes('ชำระแล้ว')) ? 'badge bg-success' : 'badge bg-danger';
+
+                    // ปุ่มดูที่อยู่
+                    let deliveryType = row[6] || 'รับเอง';
+                    let deliveryDisplay = deliveryType.includes('จัดส่ง') ? 
+                        `<span class="badge bg-primary mb-1">จัดส่ง</span><br><button class="btn btn-sm btn-outline-dark p-0 px-2" style="font-size:0.7rem;" onclick="showAddress('${(row[7]||'').replace(/"/g,'&quot;').replace(/\n/g,'<br>')}')"><i class="fas fa-map-marker-alt"></i> ดูที่อยู่</button>` : 
+                        `<span class="badge bg-secondary">รับเอง</span>`;
+
+                    let adminBtns = '';
+                    if(isAdminMode) {
+                        if(!(status.includes('อนุมัติ') || status.includes('ชำระแล้ว'))) {
+                            adminBtns += `<button class="btn-action bg-success" onclick="approveOrder(${item.row})"><i class="fas fa-check"></i></button>`;
+                        }
+                        // เพิ่มการส่ง Size (row[2]) เข้าไปในฟังก์ชัน openEdit
+                        adminBtns += `<button class="btn-action bg-warning" onclick="openEdit(${item.row}, '${row[4].replace(/"/g,'&quot;')}', '${row[5]}', '${(row[7]||'').replace(/"/g,'&quot;').replace(/\n/g,' ')}', '${(row[2]||'-').replace(/"/g,'&quot;')}')"><i class="fas fa-pen"></i></button>`;
+                        adminBtns += `<button class="btn-action bg-danger" onclick="delOrder(${item.row})"><i class="fas fa-trash"></i></button>`;
+                    }
+
+                    html += `<tr><td>${row[0]}</td><td>${row[4].replace('[จอง]','')}</td><td>${product}</td><td>${deliveryDisplay}</td><td class="mobile-hide">${row[2]}</td><td class="mobile-hide">${qty}</td><td>${price.toLocaleString()}</td><td><span class="${badge}">${status}</span></td><td>${adminBtns}</td></tr>`;
+                });
+
+                document.getElementById('dataTableBody').innerHTML = html;
+
+                if(isAdminMode) {
+                    document.getElementById('statTotalOrders').innerText = totalOrders;
+                    document.getElementById('statPaidRevenue').innerText = paidRev.toLocaleString() + ' ฿';
+                    document.getElementById('statUnpaidRevenue').innerText = unpaidRev.toLocaleString() + ' ฿';
+                    document.getElementById('statTotalRevenue').innerText = (paidRev + unpaidRev).toLocaleString() + ' ฿';
+                    document.getElementById('totalCups').innerText = totalCups + ' ใบ';
+                    document.getElementById('totalShirts').innerText = totalShirts + ' ตัว';
+                    let sizeHeaderHtml = '', sizeRowHtml = '';
+                    const sizeOrder = ['Kids 2S','Kids S','Kids M','Kids L','Kids XL','SS','S','M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'];
+                    let sortedKeys = Object.keys(sizeCount).sort((a,b) => sizeOrder.indexOf(a) - sizeOrder.indexOf(b));
+                    if(sortedKeys.length === 0) { sizeHeaderHtml = '<th>ไม่มีข้อมูล</th>'; sizeRowHtml = '<td>-</td>'; } 
+                    else { sortedKeys.forEach(k => { sizeHeaderHtml += `<th>${k}</th>`; sizeRowHtml += `<td>${sizeCount[k]}</td>`; }); }
+                    document.getElementById('shirtSizeHeader').innerHTML = sizeHeaderHtml; document.getElementById('shirtSizeRow').innerHTML = sizeRowHtml;
+                }
+            });
+        }
+
+        function showAddress(addr) { Swal.fire({title: 'ที่อยู่จัดส่ง', html: `<div class="text-start p-3 bg-light border rounded">${addr}</div>`, icon: 'info', confirmButtonText: 'ปิด'}); }
+        function approveOrder(rowId) { Swal.fire({title:'ยืนยันอนุมัติ?', showCancelButton:true, confirmButtonText:'อนุมัติ'}).then((r)=>{if(r.isConfirmed){let fd=new FormData();fd.append('action','approve');fd.append('row',rowId);fetch(WEB_APP_URL,{method:'POST',body:fd}).then(res=>res.json()).then(d=>{if(d.result==='success')loadOrders();});}});}
+        
+        // ฟังก์ชันแก้ไข (เพิ่ม Size parameter)
+        function openEdit(rowId, n, p, a, s){ 
+            document.getElementById('edit_row_id').value=rowId; 
+            document.getElementById('edit_name').value=n; 
+            document.getElementById('edit_phone').value=p; 
+            document.getElementById('edit_addr').value=a; 
+            document.getElementById('edit_size').value=s; // ใส่ค่า size ลงใน input
+            editModal.show(); 
+        }
+
+        function saveEdit(){ 
+            let fd=new FormData(); 
+            fd.append('action','edit'); 
+            fd.append('row',document.getElementById('edit_row_id').value); 
+            fd.append('name',document.getElementById('edit_name').value); 
+            fd.append('phone',document.getElementById('edit_phone').value); 
+            fd.append('address',document.getElementById('edit_addr').value); 
+            fd.append('size',document.getElementById('edit_size').value); // ส่งค่า size ไปบันทึก
+            
+            Swal.fire({title:'Saving...',didOpen:()=>Swal.showLoading()}); 
+            fetch(WEB_APP_URL,{method:'POST',body:fd}).then(r=>r.json()).then(d=>{
+                Swal.close();
+                if(d.result==='success'){
+                    editModal.hide();
+                    loadOrders();
+                    Swal.fire('Saved','','success');
+                }
+            });
+        }
+        
+        function delOrder(rowId) { if(confirm('ยืนยันลบ?')){ let fd=new FormData();fd.append('action','delete');fd.append('row',rowId);fetch(WEB_APP_URL,{method:'POST',body:fd}).then(()=>loadOrders());}}
+    </script>
+</body>
+</html>
